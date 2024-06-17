@@ -9,10 +9,12 @@ window.V.ARedSecret.books = {
         parts: [60],
         currentPart: 0,
         language: "latin",
-        requirement: 200,
+        requirements: {
+            language: 200,
+        },
         basePrice: 2000,
         effects: [
-            () => { return 0; },
+            function () { $("#finish-effects-output").wiki("<<gainIAKnowledge 'grail' 50>><br><br>"); },
         ],
     },
     skeletonsongs: {
@@ -41,10 +43,30 @@ window.V.ARedSecret.books = {
         parts: [60],
         currentPart: 0,
         language: "latin",
-        requirement: 200,
+        requirements: {
+            language: 200,
+        },
         basePrice: 2000,
         effects: [
             () => { return 0; },
         ],
     },
+    twentysixenticementsseventorments: {
+        id: "twentysixenticementsseventorments",
+        finished: false,
+        parts: [240],
+        currentPart: 0,
+        language: "latin",
+        requirements: {
+            language: 800,
+            invisibleArt: {
+                type: "grail",
+                value: 600,
+            },
+        },
+        basePrice: 10000,
+        effects: [
+            () => { return 0; },
+        ],
+    }
 }

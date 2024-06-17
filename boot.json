@@ -8,7 +8,7 @@
         "assets"
     ],
     "scriptFileList_inject_early": [
-        "javascript/utils-earlyload.js"
+        "javascript/utils.js"
     ],
     "scriptFileList_earlyload": [],
     "scriptFileList_preload": [],
@@ -35,6 +35,11 @@
                     "passage": "Characteristics",
                     "findRegex": "(?<=<<characteristic-box _housekeepingConfig>>)",
                     "replace": "<<characteristic-Languages>>"
+                },
+                {
+                    "passage": "Characteristics",
+                    "findRegex": "(?=<br>\n<</widget>>)",
+                    "replace": "<<characteristic-InvisibleArts>>"
                 },
                 {
                     "passage": "Bedroom",

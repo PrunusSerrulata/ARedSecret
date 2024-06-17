@@ -45,21 +45,27 @@ $ARedSecret.loc.view_bookshelf
 
 <<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
 <<set _translated to $ARedSecret.current_book.translated>>
-<<set _isReadable to !_book.language || _translated || _book.requirement <= $ARedSecret[_book.language]>>
+<<set _canRead to !_book.language || _book.requirements.language <= $ARedSecret[_book.language]>>
+<<set _canUnderstand to !(_book.requirements?.invisibleArt) || _book.requirements.invisibleArt.value <= $ARedSecret[_book.requirements.invisibleArt.type]>>
+<<set _canTakeRisk to !_canUnderstand && _book.requirements.invisibleArt.value-100 <= $ARedSecret[_book.requirements.invisibleArt.type]>>
 
 $ARedSecret.loc.book_select
 <br>
 <<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>>
 <br><br>
 
-<<if _book.finished>>
+<!-- 风味文本 -->
+
+<<if _book.finished>> <!-- 已读完 -->
     $ARedSecret.loc.book_select_finished
-<<elseif not _isReadable>>
+<<elseif not _canRead and not _translated>> <!-- 语言能力不足，且非译本 -->
     <<if $ARedSecret[_book.language] eq 0>>
         $ARedSecret.loc.book_select_cannot_read_at_all
     <<else>>
         $ARedSecret.loc.book_select_cannot_read
     <</if>>
+<<elseif not _canUnderstand and not _canTakeRisk>> <!-- 无形之术知识不足，完全无法理解本书 -->
+    $ARedSecret.loc.book_select_cannot_understand
 <<elseif _book.currentPart eq 0>>
     $ARedSecret.loc.book_select_not_started
 <<elseif _book.currentPart eq _book.parts.length - 1>>
@@ -68,20 +74,30 @@ $ARedSecret.loc.book_select
     $ARedSecret.loc.book_select_partially_read
 <</if>>
 
-<<if _book.language and _book.requirement gt $ARedSecret[_book.language] and _translated>>
-    <br>
+<!-- 无形之术理解仅差一个小等级，此时可以冒险读书 -->
+<<if _canTakeRisk>>
+    <br><br>
+    $ARedSecret.loc.book_select_nearly_understand
+<</if>>
+
+<!-- 在语言水平不足的情况下得到译本 -->
+<<if not _canRead and _translated and (_canUnderstand or _canTakeRisk)>>
+    <br><br>
     $ARedSecret.loc.book_select_translated_version
 <</if>>
 <br><br>
 
-<<if _isReadable>>
+<<if (_canRead or _translated) and (_canUnderstand or _canTakeRisk)>>
     <<if not _book.finished>>
         <<set _link to $ARedSecret.loc.read_this_book>>
         <<if _book.parts.length gt 1>>
             <<set _link += $ARedSecret.loc.book_select_part_indication>>
         <</if>>
+        <<if _canTakeRisk>>
+            <<set _link += $ARedSecret.loc.book_select_risky>>
+        <</if>>
         <<set _link += " (" + ARedSecret.utils.getHourTimeString(_book.parts[_book.currentPart]) + ")">>
-        <<link [[_link|ARedSecret Mechanism Book Reading 1]]>>
+        <<link "_link" "ARedSecret Mechanism Book Reading 1">>
             <<set $ARedSecret.reading_return_dest to "ARedSecret Location Home Bedroom Bookshelf">>
             <<pass _book.parts[_book.currentPart]/2>>
         <</link>>

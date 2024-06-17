@@ -1,15 +1,43 @@
-:: ARedSecret Characteristics Languages [widget]
+:: ARedSecret Characteristics [widget]
 
 <<widget "characteristic-Languages">>
     <<silently>>
-        <<set _latinConfig = { name: $ARedSecret.loc.latin, displayType: "grade", currentValue: $ARedSecret.latin, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
-        <<set _greekConfig = { name: $ARedSecret.loc.greek, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
-        <<set _sanskritConfig = { name: $ARedSecret.loc.sanskrit, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
-        <<set _aramaicConfig = { name: $ARedSecret.loc.aramaic, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _latinConfig = { name: $ARedSecret.loc.latin, displayType: "grade", currentValue: $ARedSecret.latin, modifier: 100, modTypes: { good: [], bad: [] }, states: _basicSkillGrades }>>
+        <<set _greekConfig = { name: $ARedSecret.loc.greek, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _basicSkillGrades }>>
+        <<set _sanskritConfig = { name: $ARedSecret.loc.sanskrit, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _basicSkillGrades }>>
+        <<set _aramaicConfig = { name: $ARedSecret.loc.aramaic, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _basicSkillGrades }>>
     <</silently>>
     <br>
     <<characteristic-box _latinConfig>>
     <<characteristic-box _greekConfig>>
     <<characteristic-box _sanskritConfig>>
     <<characteristic-box _aramaicConfig>>
+<</widget>>
+
+<<widget "characteristic-InvisibleArts">>
+    <br>
+    <span class="gold">$ARedSecret.loc.invisible_arts</span>
+    <<silently>>
+        <<set _lanternConfig = { name: $ARedSecret.loc.lantern, displayType: "grade", currentValue: $ARedSecret.lantern, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _forgeConfig = { name: $ARedSecret.loc.forge, displayType: "grade", currentValue: $ARedSecret.forge, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _edgeConfig = { name: $ARedSecret.loc.edge, displayType: "grade", currentValue: $ARedSecret.edge, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _winterConfig = { name: $ARedSecret.loc.winter, displayType: "grade", currentValue: $ARedSecret.winter, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _heartConfig = { name: $ARedSecret.loc.heart, displayType: "grade", currentValue: $ARedSecret.heart, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _grailConfig = { name: $ARedSecret.loc.grail, displayType: "grade", currentValue: $ARedSecret.grail, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _mothConfig = { name: $ARedSecret.loc.moth, displayType: "grade", currentValue: $ARedSecret.moth, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _knockConfig = { name: $ARedSecret.loc.knock, displayType: "grade", currentValue: $ARedSecret.knock, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _secrethistoriesConfig = { name: $ARedSecret.loc.secrethistories, displayType: "grade", currentValue: $ARedSecret.secrethistories, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+    <</silently>>
+
+    <div id="invisible-arts" class="characteristic-box-list">
+        <<characteristic-box _lanternConfig>>
+        <<characteristic-box _forgeConfig>>
+        <<characteristic-box _edgeConfig>>
+        <<characteristic-box _winterConfig>>
+        <<characteristic-box _heartConfig>>
+        <<characteristic-box _grailConfig>>
+        <<characteristic-box _mothConfig>>
+        <<characteristic-box _knockConfig>>
+        <<characteristic-box _secrethistoriesConfig>>
+    </div>
 <</widget>>

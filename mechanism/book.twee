@@ -55,13 +55,14 @@
 
 <<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
 
-<<run _book.effects[_book.currentPart]()>>
-
 <<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2+1]>>
 <br><br>
 
 <<= either($ARedSecret.loc.book_reading_end)>>
 <br><br>
+
+<div id="finish-effects-output"></div>
+<<run jQuery(document).on(":passagedisplay", function (ev) { _book.effects[_book.currentPart]() })>>
 
 <<if _book.currentPart+1 gte _book.parts.length>>
     <<set $ARedSecret.books[$ARedSecret.current_book.id].currentPart to 0>>

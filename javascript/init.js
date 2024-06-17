@@ -8,10 +8,23 @@ locFile.async("string").then((v) => {
     window.V.ARedSecret.loc = JSON.parse(v);
 });
 
-window.V.ARedSecret.latin = 0;
-window.V.ARedSecret.greek = 0;
-window.V.ARedSecret.sanskrit = 0;
-window.V.ARedSecret.aramaic = 0;
+Object.assign(window.V.ARedSecret, {
+    latin: 0,
+    greek: 0,
+    sanskrit: 0,
+    aramaic: 0,
+
+    lantern: 0,
+    forge: 0,
+    edge: 0,
+    winter: 0,
+    heart: 0,
+    grail: 0,
+    moth: 0,
+    knock: 0,
+    secrethistories: 0,
+});
+
 
 window.V.ARedSecret.bookshelf = {
     type: "basic",
@@ -23,6 +36,10 @@ window.V.ARedSecret.bookshelf = {
         },
         {
             id: "orchidtransfigurations1",
+            translated: true,
+        },
+        {
+            id: "twentysixenticementsseventorments",
             translated: true,
         }
     ],

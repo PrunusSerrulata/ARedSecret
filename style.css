@@ -1,0 +1,61 @@
+.ars-lantern {
+    color:#ffe300;
+}
+
+.ars-forge {
+    color:#ff8e3e;
+}
+
+.ars-edge {
+    color:#d7dd49;
+}
+
+.ars-winter {
+    color:#beeeff;
+}
+
+.ars-heart {
+    color:#fe7e8b;
+}
+
+.ars-grail {
+    color:#fe6150;
+}
+
+.ars-moth {
+    color:#f2e9c2;
+}
+
+.ars-knock {
+    color:#b54efc;
+}
+
+.ars-sec-his {
+    color:#fe43f0;
+}
+
+#invisible-arts.characteristic-box-list {
+    flex-wrap: nowrap;
+}
+
+#invisible-arts.characteristic-box-list .characteristic-box {
+    min-width: 8%;
+}
+
+@media (max-width: 1200px) {
+    #invisible-arts.characteristic-box-list {
+        flex-wrap: wrap;
+    }
+    #invisible-arts.characteristic-box-list .characteristic-box {
+        min-width: 30%;
+    }
+}
+
+@media (max-width: 450px) {
+    #invisible-arts.characteristic-box-list {
+        flex-wrap: wrap;
+    }
+    #invisible-arts.characteristic-box-list .characteristic-box {
+        min-width: 50%;
+    }
+}

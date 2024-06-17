@@ -1,0 +1,18 @@
+:: ARedSecret Mechanism Utils [widget]
+
+<<widget "gainIAKnowledge">>
+    <<set _type to _args[0]>>
+    <<set _amount to _args[1]>>
+    <<set $ARedSecret[_type] += _amount>>
+    <<if _amount lte 50>>
+        $ARedSecret.loc.gain_ia_knowledge_1
+    <<elseif _amount gt 50 and _amount lt 100>>
+        $ARedSecret.loc.gain_ia_knowledge_2
+    <<elseif _amount gt 100 and _amount lt 150>>
+        $ARedSecret.loc.gain_ia_knowledge_3
+    <<elseif _amount gt 150 and _amount lt 200>>
+        $ARedSecret.loc.gain_ia_knowledge_4
+    <<elseif _amount gt 200>>
+        $ARedSecret.loc.gain_ia_knowledge_5
+    <</if>>
+<</widget>>

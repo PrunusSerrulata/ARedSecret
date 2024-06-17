@@ -4,6 +4,27 @@
     "sanskrit": "梵文",
     "aramaic": "亚兰文",
 
+    "lantern": "<span class='ars-lantern'>灯</span>",
+    "lantern_plain": "灯",
+    "forge": "<span class='ars-forge'>铸</span>",
+    "forge_plain": "铸",
+    "edge": "<span class='ars-edge'>刃</span>",
+    "edge_plain": "刃",
+    "winter": "<span class='ars-winter'>冬</span>",
+    "winter_plain": "冬",
+    "heart": "<span class='ars-heart'>心</span>",
+    "heart_plain": "心",
+    "grail": "<span class='ars-grail'>杯</span>",
+    "grail_plain": "杯",
+    "moth": "<span class='ars-moth'>蛾</span>",
+    "moth_plain": "蛾",
+    "knock": "<span class='ars-knock'>启</span>",
+    "knock_plain": "启",
+    "secrethistories": "<span class='ars-sec-his'>秘史</span>",
+    "secrethistories_plain": "秘史",
+
+    "invisible_arts": "无形之术",
+
     "bookshelf_desc": {
         "basic": "朴素木制小书架"
     },
@@ -19,14 +40,17 @@
     "view_bookshelf_count_empty": "但它现在却是空着的，等待着被填满。",
     "book_current_part": "第<<= _book.current_part+1>>部分，",
     "book_select": "你看向<<= $ARedSecret.loc.books[_book.id].title>>——",
-    "book_select_cannot_read": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelFromScore(_book.requirement)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前只有 <<= ARedSecret.utils.getSkillLevelFromScore($ARedSecret[_book.language])>>。",
-    "book_select_cannot_read_at_all": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelFromScore(_book.requirement)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前一点<<= $ARedSecret.loc[_book.language]>>都不会！",
+    "book_select_cannot_read": "你需要至少拥有 <<= ARedSecret.utils.getBasicSkillLevelFromScore(_book.requirements.language)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前只有 <<= ARedSecret.utils.getBasicSkillLevelFromScore($ARedSecret[_book.language])>>。",
+    "book_select_cannot_read_at_all": "你需要至少拥有 <<= ARedSecret.utils.getBasicSkillLevelFromScore(_book.requirement.language)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前一点<<= $ARedSecret.loc[_book.language]>>都不会！",
     "book_select_translated_version": "你的<<= $ARedSecret.loc[_book.language]>>水平不足以阅读原著，但幸运的是，你手里的这本是翻译版。",
+    "book_select_cannot_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识过于高深，你目前完全无法理解。你至少需要 <<= ARedSecret.utils.getDetailedSkillLevelFromScore(_book.requirements.invisibleArt.value)>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解，但你现在只有 <<= ARedSecret.utils.getDetailedSkillLevelFromScore($ARedSecret[_book.requirements.invisibleArt.type])>>。",
+    "book_select_nearly_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识对你而言有些复杂，你暂时无法完全理解。如果选择强行阅读，可能会对你的心智产生不良影响。你至少需要 <<= ARedSecret.utils.getDetailedSkillLevelFromScore(_book.requirements.invisibleArt.value)>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能安全并完全地理解本书。",
     "book_select_not_started": "这本书你还没开始读过。",
     "book_select_partially_read": "这本书你已读过一部分，但还没有读完。",
     "book_select_last_part": "还差最后一点，你就能读完这本书了。",
     "book_select_finished": "这本书你已经读完，再读也学不到什么新知识了。",
     "book_select_part_indication": " (接下来阅读第<<= _book.current_part+1>>部分，共_book.time.length部分)",
+    "book_select_risky": " <span class='red'>(有风险)</span>",
     "book_reading_start": [
         "你打开书本，开始仔细阅读书中的文字。",
         "你打开书本，开始沉浸于书中所描绘的世界。",
@@ -87,6 +111,17 @@
                 "本卷主要讲述了林地司辰中飞蛾、漆黑亚麻和环杉的故事。",
                 "“辉光是一个疑问，飞蛾总以肯定作答。漆黑亚麻以否定作答，从来如此。”"
             ]
+        },
+        "twentysixenticementsseventorments": {
+            "title": "《二十六种诱惑与七类苦痛》",
+            "desc": [
+                "画家尼尔斯·弗雷德里克·马斯凯尔曾做过一件臭名昭著之事：试图以这些苦痛为题作画。画到第五类苦痛时，画作的欲求增长得过于急切，使得他因失血而死。所幸书中的图解没有那么详细。",
+                "画家尼尔斯·弗雷德里克·马斯凯尔曾做过一件臭名昭著之事：试图以这些苦痛为题作画。画到第五类苦痛时，画作的欲求增长得过于急切，使得他因失血而死。所幸书中的图解没有那么详细。"
+            ],
+            "texts": [
+                "“圣杯的诱惑之数多于其苦痛，但苦痛才是它的真本性。生诞是第一苦痛，而干渴是第七苦痛。”",
+                "要列举杯的诱惑与苦痛，离不开“干涸之地两女巫”哀伤的历史：降生于两个子宫的煎熬，摆脱杯的挣扎与对杯的乞求，对结合为一的共同渴盼。"
+            ]
         }
     },
 
@@ -102,5 +137,11 @@
     "reread_this_book": "重读本书",
     "none": "无",
     "translated_version": "译本",
-    "book_finished": "已读完"
+    "book_finished": "已读完",
+
+    "gain_ia_knowledge_1": "你获得了些许关于<<= $ARedSecret.loc[_type]>>的知识。",
+    "gain_ia_knowledge_2": "你对<<= $ARedSecret.loc[_type]>>之知识的理解更深了。",
+    "gain_ia_knowledge_3": "你学到了相当多有关<<= $ARedSecret.loc[_type]>>的知识。",
+    "gain_ia_knowledge_4": "你对<<= $ARedSecret.loc[_type]>>之知识的理解得到了极大的增进。",
+    "gain_ia_knowledge_5": "如潮水般的<<= $ARedSecret.loc[_type]>>之知识被你尽收脑海。"
 }
