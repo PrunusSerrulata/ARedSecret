@@ -1,0 +1,109 @@
+:: ARedSecret Location Home Bedroom [widget]
+
+<<widget "bookshelfText">>
+    <<ind>>
+    <<if $ARedSecret.bookshelf.occupancy() eq 0>>
+        <<= $ARedSecret.loc.bookshelf_empty>>
+    <<elseif $ARedSecret.bookshelf.occupancy() eq 1>>
+        <<= $ARedSecret.loc.bookshelf_full>>
+    <<elseif $ARedSecret.bookshelf.occupancy() gt 0 and $ARedSecret.bookshelf.occupancy() lt 0.4>>
+        <<= $ARedSecret.loc.bookshelf_few>>
+    <<elseif $ARedSecret.bookshelf.occupancy() gt 0.4 and $ARedSecret.bookshelf.occupancy() lt 0.6>>
+        <<= $ARedSecret.loc.bookshelf_half>>
+    <<elseif $ARedSecret.bookshelf.occupancy() gt 0.6 and $ARedSecret.bookshelf.occupancy() lt 0.8>>
+        <<= $ARedSecret.loc.bookshelf_many>>
+    <<else>>
+        <<= $ARedSecret.loc.bookshelf_almostfull>>
+    <</if>>
+    <br>
+    <<link  [[$ARedSecret.loc.link_view_bookshelf|ARedSecret Location Home Bedroom Bookshelf]]>><</link>>
+<</widget>>
+
+
+
+:: ARedSecret Location Home Bedroom Bookshelf
+
+$ARedSecret.loc.view_bookshelf
+<<if $ARedSecret.bookshelf.books.length eq 0>>
+    $ARedSecret.loc.view_bookshelf_count_empty
+<<else>>
+    $ARedSecret.loc.view_bookshelf_count
+<</if>>
+<br><br>
+
+<<for _i, _v range $ARedSecret.bookshelf.books>>
+    <<linkBookinBookshelf _i _v>>
+    <br>
+<</for>>
+
+<br>
+<<link [[$ARedSecret.loc.back|Bedroom]]>><</link>>
+
+
+
+:: ARedSecret Location Home Bedroom Bookshelf SelectBook
+
+<<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
+<<set _translated to $ARedSecret.current_book.translated>>
+<<set _isReadable to !_book.language || _translated || _book.requirement <= $ARedSecret[_book.language]>>
+
+$ARedSecret.loc.book_select
+<br>
+<<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>>
+<br><br>
+
+<<if _book.finished>>
+    $ARedSecret.loc.book_select_finished
+<<elseif not _isReadable>>
+    <<if $ARedSecret[_book.language] eq 0>>
+        $ARedSecret.loc.book_select_cannot_read_at_all
+    <<else>>
+        $ARedSecret.loc.book_select_cannot_read
+    <</if>>
+<<elseif _book.currentPart eq 0>>
+    $ARedSecret.loc.book_select_not_started
+<<elseif _book.currentPart eq _book.parts.length - 1>>
+    $ARedSecret.loc.book_select_last_part
+<<else>>
+    $ARedSecret.loc.book_select_partially_read
+<</if>>
+
+<<if _book.language and _book.requirement gt $ARedSecret[_book.language] and _translated>>
+    <br>
+    $ARedSecret.loc.book_select_translated_version
+<</if>>
+<br><br>
+
+<<if _isReadable>>
+    <<if not _book.finished>>
+        <<set _link to $ARedSecret.loc.read_this_book>>
+        <<if _book.parts.length gt 1>>
+            <<set _link += $ARedSecret.loc.book_select_part_indication>>
+        <</if>>
+        <<set _link += " (" + ARedSecret.utils.getHourTimeString(_book.parts[_book.currentPart]) + ")">>
+        <<link [[_link|ARedSecret Mechanism Book Reading 1]]>>
+            <<set $ARedSecret.reading_return_dest to "ARedSecret Location Home Bedroom Bookshelf">>
+            <<pass _book.parts[_book.currentPart]/2>>
+        <</link>>
+    <<else>>
+        <<link [[$ARedSecret.loc.reread_this_book (1:00)|ARedSecret Mechanism Book Reread]]>>
+            <<set $ARedSecret.reading_return_dest to "ARedSecret Location Home Bedroom Bookshelf">>
+            <<pass 60>>
+        <</link>>
+    <</if>>
+    <br>
+<</if>>
+
+<<linkreplace "<span class='red'>$ARedSecret.loc.discard_this_book</span>" t8n>>
+    $ARedSecret.loc.book_confirm_discard
+    <br>
+    <<link [[$ARedSecret.loc.cancel|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>><</link>>
+    <br>
+    <<link "<span class='red'>$ARedSecret.loc.book_confirm_discard_yes</span>" "ARedSecret Location Home Bedroom Bookshelf">>
+        <<run $ARedSecret.bookshelf.books.splice($ARedSecret.current_book.bookshelfIndex, 1)>>
+        <<unset $ARedSecret.current_book>>
+    <</link>>
+<</linkreplace>>
+<br><br>
+
+<<link [[$ARedSecret.loc.back|ARedSecret Location Home Bedroom Bookshelf]]>><</link>>

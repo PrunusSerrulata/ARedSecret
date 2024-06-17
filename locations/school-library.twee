@@ -1,0 +1,19 @@
+:: ARedSecret Places School Library [widget]
+<<widget "schoolLibNewBook">>
+    <<if $ARedSecret.schoolLibInitBook and currentSkillValue('english') gte 300>>
+        <br>
+        <span id="schoolLibNewBookFound">
+            $ARedSecret.loc.school_lib_first_found
+            <br>
+
+            <<set _link to $ARedSecret.loc.school_lib_take_book + $ARedSecret.loc.books[$ARedSecret.schoolLibInitBook.id].title + " (0:01)">>
+            <<ind>><<link _link>>
+                <<pass 1>>
+                <<run $ARedSecret.bookshelf.books.push($ARedSecret.schoolLibInitBook)>>
+                <<unset $ARedSecret.schoolLibInitBook>>
+                <<replace "#schoolLibNewBookFound" t8n>>$ARedSecret.loc.school_lib_book_taken<</replace>>
+            <</link>>
+        </span>
+        <br>
+    <</if>>
+<</widget>>

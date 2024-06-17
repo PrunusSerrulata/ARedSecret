@@ -1,0 +1,15 @@
+:: ARedSecret Characteristics Languages [widget]
+
+<<widget "characteristic-Languages">>
+    <<silently>>
+        <<set _latinConfig = { name: $ARedSecret.loc.latin, displayType: "grade", currentValue: $ARedSecret.latin, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _greekConfig = { name: $ARedSecret.loc.greek, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _sanskritConfig = { name: $ARedSecret.loc.sanskrit, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+        <<set _aramaicConfig = { name: $ARedSecret.loc.aramaic, displayType: "grade", currentValue: $ARedSecret.greek, modifier: 100, modTypes: { good: [], bad: [] }, states: _detailedSkillGrades }>>
+    <</silently>>
+    <br>
+    <<characteristic-box _latinConfig>>
+    <<characteristic-box _greekConfig>>
+    <<characteristic-box _sanskritConfig>>
+    <<characteristic-box _aramaicConfig>>
+<</widget>>

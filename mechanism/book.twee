@@ -1,0 +1,78 @@
+:: ARedSecret Mechanism Book [widget]
+
+<<widget "linkBookinBookshelf">>
+    <<set _index to _args[0]>>
+    <<set _book to _args[1]>>
+    <<set _translated to _book.translated>>
+    <<set _book to $ARedSecret.books[_book.id]>>
+    <<set _link to $ARedSecret.loc.check + $ARedSecret.loc.books[_book.id].title>>
+    <<if _book.language>>
+        <<set _link += " (" + (_translated ? $ARedSecret.loc.translated_version : $ARedSecret.loc[_book.language]) + ")">>
+    <</if>>
+    <<if _book.finished>>
+        <<set _link += " (" + $ARedSecret.loc.book_finished + ")">>
+    <<elseif _book.parts.length gt 1>>
+        <<set _link += " (" + _book.currentPart + "/" + _book.parts.length + ")">>
+    <</if>>
+
+    <<ind>><<link [[_link|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>>
+        <<set $ARedSecret.current_book to Object.defineProperty(_args[1], "bookshelfIndex", { value: _index })>>
+    <</link>>
+<</widget>>
+
+
+
+:: ARedSecret Mechanism Book Reading 1
+
+<<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
+
+<<= either($ARedSecret.loc.book_reading_start)>>
+<br><br>
+
+<<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2]>>
+<br><br>
+
+<<set _link to $ARedSecret.loc.continue>>
+<<set _link += "(" + ARedSecret.utils.getHourTimeString(_book.parts[_book.currentPart]/2) + ")">>
+<<link [[_link|ARedSecret Mechanism Book Reading 2]]>><<pass _book.parts[_book.currentPart]/2>><</link>>
+
+
+
+:: ARedSecret Mechanism Book Reading 2
+
+<<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
+
+<<run _book.effects[_book.currentPart]()>>
+
+<<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2+1]>>
+<br><br>
+
+<<= either($ARedSecret.loc.book_reading_end)>>
+<br><br>
+
+<<if _book.currentPart+1 gte _book.parts.length>>
+    <<set $ARedSecret.books[$ARedSecret.current_book.id].currentPart to 0>>
+    <<set $ARedSecret.books[$ARedSecret.current_book.id].finished to true>>
+<<else>>
+    <<set $ARedSecret.books[$ARedSecret.current_book.id].currentPart += 1>>
+<</if>>
+
+<<unset $ARedSecret.current_book>>
+<<link [[$ARedSecret.loc.back|$ARedSecret.reading_return_dest]]>><<unset $ARedSecret.reading_return_dest>><</link>>
+
+
+
+:: ARedSecret Mechanism Book Reread
+
+<<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
+
+<<= either($ARedSecret.loc.book_reading_reread)>>
+<br><br>
+
+<<for _i range $ARedSecret.loc.books[$ARedSecret.current_book.id].texts>>
+    <<= _i>>
+    <br><br>
+<</for>>
+
+<<unset $ARedSecret.current_book>>
+<<link [[$ARedSecret.loc.back|$ARedSecret.reading_return_dest]]>><<unset $ARedSecret.reading_return_dest>><</link>>

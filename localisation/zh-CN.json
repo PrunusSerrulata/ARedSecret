@@ -1,0 +1,106 @@
+{
+    "latin": "拉丁文",
+    "greek": "希腊文",
+    "sanskrit": "梵文",
+    "aramaic": "亚兰文",
+
+    "bookshelf_desc": {
+        "basic": "朴素木制小书架"
+    },
+    "bookshelf_empty": "你的<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>里空空如也，一本书都没有。",
+    "bookshelf_few": "你的<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>里陈列着一些书籍，还剩下非常多的空间。",
+    "bookshelf_half": "你的藏书事业小有所成，<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>里已经有一半左右的空间被塞进了各种书籍。",
+    "bookshelf_almostfull": "你的<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>几乎已经被各种书籍塞满，也许需要换一个更大的书柜了。",
+    "bookshelf_full": "你的<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>已被书籍塞满，没有任何空间了。",
+    "link_view_bookshelf": "查看你的书架",
+
+    "view_bookshelf": "你站在你的<<= $ARedSecret.loc.bookshelf_desc[$ARedSecret.bookshelf.type]>>面前。这个书架能存放$ARedSecret.bookshelf.capacity本书，",
+    "view_bookshelf_count": "现在有<<= $ARedSecret.bookshelf.books.length>>本书正静静地矗立在里面。",
+    "view_bookshelf_count_empty": "但它现在却是空着的，等待着被填满。",
+    "book_current_part": "第<<= _book.current_part+1>>部分，",
+    "book_select": "你看向<<= $ARedSecret.loc.books[_book.id].title>>——",
+    "book_select_cannot_read": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelFromScore(_book.requirement)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前只有 <<= ARedSecret.utils.getSkillLevelFromScore($ARedSecret[_book.language])>>。",
+    "book_select_cannot_read_at_all": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelFromScore(_book.requirement)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前一点<<= $ARedSecret.loc[_book.language]>>都不会！",
+    "book_select_translated_version": "你的<<= $ARedSecret.loc[_book.language]>>水平不足以阅读原著，但幸运的是，你手里的这本是翻译版。",
+    "book_select_not_started": "这本书你还没开始读过。",
+    "book_select_partially_read": "这本书你已读过一部分，但还没有读完。",
+    "book_select_last_part": "还差最后一点，你就能读完这本书了。",
+    "book_select_finished": "这本书你已经读完，再读也学不到什么新知识了。",
+    "book_select_part_indication": " (接下来阅读第<<= _book.current_part+1>>部分，共_book.time.length部分)",
+    "book_reading_start": [
+        "你打开书本，开始仔细阅读书中的文字。",
+        "你打开书本，开始沉浸于书中所描绘的世界。",
+        "你打开书本，开始吸取文字中潜藏的知识。"
+    ],
+    "book_reading_end": [
+        "你合上书本。"
+    ],
+    "book_reading_reread": [
+        "你翻看着书本，熟悉的文字渐次映入眼帘。"
+    ],
+    "book_confirm_discard": "你确定要丢弃本书吗？一旦丢弃，本书将永久丢失，你可能无法找到第二本相同文献了！",
+    "book_confirm_discard_yes": "确定，我要丢弃本书",
+
+    "school_lib_first_found": "你留意到一本略显古旧的书，显然已经很久没有人借阅过了。但不知为何，这本书勾起了你的好奇心……",
+    "school_lib_take_book": "拿走",
+    "school_lib_book_taken": "这本书的内容让你有点摸不着头脑……或许可以回家仔细阅读。",
+
+    "books": {
+        "orchidtransfigurations1": {
+            "title": "《兰花变容·卷一：筵宴》",
+            "desc": [
+                "一部玫瑰十字会式寓言的合集，推测为罗伯特·福路德所著，丛书第一卷。",
+                "一部玫瑰十字会式寓言的合集，推测为罗伯特·福路德所著，丛书第一卷。本书为后来的英译本。"
+            ],
+            "texts": [
+                "本书的插图的确夺人眼球；使人面色潮红，合上书后仍在眼底印照不去。",
+                "“人必先噬人，而后人噬之。为人噬者不可逆，如人之诞世不可逆。” "
+            ]
+        },
+        "skeletonsongs": {
+            "title": "《骷髅歌》",
+            "desc": [
+                "一部咏颂贪婪享乐的诗集，作者是传闻中从女继承人成为贵妇又成为诗人的阿拉贝拉·达斯克，该名很可能是伪名。"
+            ],
+            "texts": [
+                "阿拉贝拉在引言中解释说，她这本书本应有插图，但防剿局不会允许。她暗示插图仍存于某处。本书是致“寻找赤杯的帕西瓦尔爵士”的献礼。",
+                "二十六颗悦人的果实，七种责罚，九座花园，四桩悔事。"
+            ]
+        },
+        "travellingatnight1": {
+            "title": "《夜游漫记·卷一》",
+            "desc": [
+                "一套带注解的克里斯托弗·伊利奥波里的梦境手记，有时也被称为“唯一能读懂的密教典籍”：文笔精妙，富有趣味，扑朔迷离。"
+            ],
+            "texts": [
+                "“林地生长于漫宿墙外。每一个研习诸史的人都知道，漫宿无墙。”",
+                "伊利奥波里在书中描述了他如何通过他口中的银色梦境反复造访梦中的林地。“通过遐想到达林地，”他解释道，“如同遐想坠入爱河一般。不过我的确找到了有所裨助的秘密。”"
+            ]
+        },
+        "dehoris1": {
+            "title": "《司辰志·卷一》",
+            "desc": [
+                "拉丁语著。一本于四世纪成书于十四世纪被译为拉丁语的书籍在十九世纪的重印本（作者为不知疲倦的纳撒尼尔·达西-埃弗斯）。",
+                "一套隐秘诸神的名册，内容半通不通。这本是其中一卷的英译本，记述了林地诸神灵。"
+            ],
+            "texts": [
+                "本卷主要讲述了林地司辰中飞蛾、漆黑亚麻和环杉的故事。",
+                "“辉光是一个疑问，飞蛾总以肯定作答。漆黑亚麻以否定作答，从来如此。”"
+            ]
+        }
+    },
+
+    "yes": "是",
+    "no": "否",
+    "cancel": "取消",
+    "back": "返回",
+    "read": "阅读",
+    "read_this_book": "阅读本书",
+    "check": "查看",
+    "continue": "继续",
+    "discard_this_book": "丢弃本书",
+    "reread_this_book": "重读本书",
+    "none": "无",
+    "translated_version": "译本",
+    "book_finished": "已读完"
+}
