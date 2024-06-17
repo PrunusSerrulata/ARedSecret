@@ -1,5 +1,17 @@
 :: ARedSecret Mechanism Book [widget]
 
+<<widget "bookicon">>
+    <<set _book to _args[0]>>
+    <<set _translated to _args[1]>>
+
+    <<if _book.language and !_translated>>
+        <<set _icon to "assets/icons/books/"+_book.id+"_"+_book.language+".png">>
+    <<else>>
+        <<set _icon to "assets/icons/books/"+_book.id+".png">>
+    <</if>>
+    <img class="icon" @src="_icon">
+<</widget>>
+
 <<widget "linkBookinBookshelf">>
     <<set _index to _args[0]>>
     <<set _book to _args[1]>>
@@ -15,7 +27,7 @@
         <<set _link += " (" + _book.currentPart + "/" + _book.parts.length + ")">>
     <</if>>
 
-    <<ind>><<link [[_link|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>>
+    <<bookicon _book _translated>><<link [[_link|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>>
         <<set $ARedSecret.current_book to Object.defineProperty(_args[1], "bookshelfIndex", { value: _index })>>
     <</link>>
 <</widget>>

@@ -33,6 +33,6 @@ let schoolLibBooks = [
     { id: "skeletonsongs" },
     { id: "travellingatnight1" },
     { id: "dehoris1", translated: true },
-]
+];
 
-window.V.ARedSecret.schoolLibInitBook = window.ARedSecret.utils.draw(schoolLibBooks)
+window.V.ARedSecret.schoolLibInitBook = window.ARedSecret.utils.draw(schoolLibBooks);
