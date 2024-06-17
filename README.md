@@ -14,13 +14,18 @@
 
 ## 前置需求
 
-本模组基于[ModLoader](https://github.com/Lyoko-Jeremie/sugarcube-2-ModLoader)开发，请使用带ModLoader的DoL版本。
+本模组基于[ModLoader](https://github.com/Lyoko-Jeremie/sugarcube-2-ModLoader)开发，请使用带ModLoader的DoL版本游玩本mod。
 
-## 手动编译
+## 手动编译并运行
 
-1. 克隆[DoL模组编写小助手](https://github.com/NumberSir/DOL-Mod-Created-Helper)至本地；
-2. 在其根目录内新建`mods`文件夹，将本mod克隆至该文件夹中；
-3. 按照DoL模组编写小助手的文档，编译得到zip文件。
+1. 将本仓库克隆至本地；
+
+2. - 在仓库根目录下运行`packager/main.py`；
+   - 对于Windows用户，直接在根目录下运行`run.bat`；
+
+   在根目录下得到`ARedSecret.mod.zip`。
+
+3. *（可选）* 将带有ModLoader的[预构建版DoL](https://github.com/Lyoko-Jeremie/DoLModLoaderBuild/releases)解压至本仓库根目录下`dol-with-ml`目录内，打包脚本会自动启动HTTP服务器供本地调试使用。
 
 ## 开发路线
 
