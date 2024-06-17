@@ -7,7 +7,7 @@
             <br>
 
             <<set _link to $ARedSecret.loc.school_lib_take_book + $ARedSecret.loc.books[$ARedSecret.schoolLibInitBook.id].title + " (0:01)">>
-            <<ind>><<link _link>>
+            <<bookicon $ARedSecret.schoolLibInitBook.id $ARedSecret.schoolLibInitBook.translated>><<link _link>>
                 <<pass 1>>
                 <<run $ARedSecret.bookshelf.books.push($ARedSecret.schoolLibInitBook)>>
                 <<unset $ARedSecret.schoolLibInitBook>>
