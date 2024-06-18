@@ -20,10 +20,11 @@
 
 1. 将本仓库克隆至本地；
 
-2. - 在仓库根目录下运行`packager/main.py`；
+2. 在仓库根目录下运行`packager/main.py`；
    - 对于Windows用户，直接在根目录下运行`run.bat`；
+   - 对于Linux用户，直接在根目录下运行`run.sh`；
 
-   在根目录下得到`ARedSecret.mod.zip`。
+   之后在根目录下即可得到打包后的`ARedSecret.mod.zip`。
 
 3. *（可选）* 将带有ModLoader的[预构建版DoL](https://github.com/Lyoko-Jeremie/DoLModLoaderBuild/releases)解压至本仓库根目录下`dol-with-ml`目录内，打包脚本会自动启动HTTP服务器供本地调试使用。
 

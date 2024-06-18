@@ -14,7 +14,7 @@ window.V.ARedSecret.books = {
         },
         basePrice: 2000,
         effects: [
-            function () { $("#finish-effects-output").wiki("<<gainIAKnowledge 'grail' 50>><br><br>"); },
+            () => { $("#finish-effects-output").wiki("<<gainIAKnowledge 'grail' 50>><br><br>"); },
         ],
     },
     skeletonsongs: {
@@ -24,7 +24,7 @@ window.V.ARedSecret.books = {
         currentPart: 0,
         basePrice: 2000,
         effects: [
-            () => { return 0; },
+            () => { $("#finish-effects-output").wiki("<<gainIAKnowledge 'grail' 50>><br><br>"); },
         ],
     },
     travellingatnight1: {
@@ -34,7 +34,7 @@ window.V.ARedSecret.books = {
         currentPart: 0,
         basePrice: 2000,
         effects: [
-            () => { return 0; },
+            () => { $("#finish-effects-output").wiki("<<gainIAKnowledge 'moth' 50>><br><br>"); },
         ],
     },
     dehoris1: {
@@ -48,7 +48,7 @@ window.V.ARedSecret.books = {
         },
         basePrice: 2000,
         effects: [
-            () => { return 0; },
+            () => { $("#finish-effects-output").wiki("<<gainIAKnowledge 'moth' 50>><br><br>"); },
         ],
     },
     twentysixenticementsseventorments: {
@@ -66,7 +66,7 @@ window.V.ARedSecret.books = {
         },
         basePrice: 10000,
         effects: [
-            () => { return 0; },
+            () => { $("#finish-effects-output").wiki("<<gainIAKnowledge 'grail' 150>><br><br>"); },
         ],
     }
 }

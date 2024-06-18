@@ -1,13 +1,13 @@
+from functools import partial
+import http.server
+import json
+import os
 import presets
 import re
-import os
-import json
-import http.server
-import zipfile
 import shutil
 import sys
-from functools import partial
 import urllib.parse
+import zipfile
 
 PORT = 8000
 BIND = "127.0.0.1"
@@ -90,7 +90,7 @@ def pack():
 def run(port=8000, bind="127.0.0.1", directory=os.getcwd()):
     with http.server.ThreadingHTTPServer((bind, port), partial(http.server.SimpleHTTPRequestHandler, directory=directory)) as httpd:
         print(f"Serving HTTP on {bind} port {port}")
-        print(f"Click to open: http://{bind}:{port}/" + urllib.parse.quote("Degrees of Lewdity VERSION.html.mod-polyfill.html"))
+        print(f"Click to open: http://{bind}:{port}/" + urllib.parse.quote("Degrees of Lewdity VERSION.html.mod.html"))
         print()
         try:
             httpd.serve_forever()
@@ -108,8 +108,7 @@ if __name__ == "__main__":
     with open("./dol-with-ml/modList.json", "w") as f:
         json.dump(["mods/"+presets.name+".mod.zip"], f)
         
-    
-    if os.path.exists("./dol-with-ml/"):
+    if len(sys.argv) > 1 and sys.argv[1] == "-s" and os.path.exists("./dol-with-ml/"):
         print()
         run(port=PORT, bind=BIND, directory="./dol-with-ml/")
-        # webbrowser.get("firefox").open_new_tab(f"http://{BIND}:{PORT}/Degrees of Lewdity VERSION.html.mod-polyfill.html")
+        # webbrowser.get("firefox").open_new_tab(f"http://{BIND}:{PORT}/Degrees of Lewdity VERSION.html.mod.html")

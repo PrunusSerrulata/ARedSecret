@@ -43,7 +43,7 @@ window.V.ARedSecret.bookshelf = {
             translated: true,
         }
     ],
-    occupancy: function () { return this.books.length / this.capacity },
+    getOccupancy: function () { return this.books.length / this.capacity },
 };
 
 let schoolLibBooks = [

@@ -42,8 +42,8 @@
 <<= either($ARedSecret.loc.book_reading_start)>>
 <br><br>
 
-<<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2]>>
-<br><br>
+<blockquote><<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2]>></blockquote>
+<br>
 
 <<set _link to $ARedSecret.loc.continue>>
 <<set _link += "(" + ARedSecret.utils.getHourTimeString(_book.parts[_book.currentPart]/2) + ")">>
@@ -55,14 +55,14 @@
 
 <<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
 
-<<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2+1]>>
-<br><br>
+<blockquote><<= $ARedSecret.loc.books[$ARedSecret.current_book.id].texts[_book.currentPart*2+1]>></blockquote>
+<br>
 
 <<= either($ARedSecret.loc.book_reading_end)>>
 <br><br>
 
 <div id="finish-effects-output"></div>
-<<run jQuery(document).on(":passagedisplay", function (ev) { _book.effects[_book.currentPart]() })>>
+<<run jQuery(document).one(":passagedisplay", function (ev) { _book.effects[_book.currentPart]() })>>
 
 <<if _book.currentPart+1 gte _book.parts.length>>
     <<set $ARedSecret.books[$ARedSecret.current_book.id].currentPart to 0>>
@@ -83,10 +83,13 @@
 <<= either($ARedSecret.loc.book_reading_reread)>>
 <br><br>
 
-<<for _i range $ARedSecret.loc.books[$ARedSecret.current_book.id].texts>>
-    <<= _i>>
-    <br><br>
-<</for>>
+<blockquote>
+    <<for _i range $ARedSecret.loc.books[$ARedSecret.current_book.id].texts>>
+        <<= _i>>
+        <br><br>
+    <</for>>
+</blockquote>
+<br>
 
 <<unset $ARedSecret.current_book>>
 <<link [[$ARedSecret.loc.back|$ARedSecret.reading_return_dest]]>><<unset $ARedSecret.reading_return_dest>><</link>>

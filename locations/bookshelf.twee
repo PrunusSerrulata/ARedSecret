@@ -2,15 +2,15 @@
 
 <<widget "bookshelfText">>
     <<ind>>
-    <<if $ARedSecret.bookshelf.occupancy() eq 0>>
+    <<if $ARedSecret.bookshelf.getOccupancy() eq 0>>
         <<= $ARedSecret.loc.bookshelf_empty>>
-    <<elseif $ARedSecret.bookshelf.occupancy() eq 1>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() eq 1>>
         <<= $ARedSecret.loc.bookshelf_full>>
-    <<elseif $ARedSecret.bookshelf.occupancy() gt 0 and $ARedSecret.bookshelf.occupancy() lt 0.4>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0 and $ARedSecret.bookshelf.getOccupancy() lte 0.4>>
         <<= $ARedSecret.loc.bookshelf_few>>
-    <<elseif $ARedSecret.bookshelf.occupancy() gt 0.4 and $ARedSecret.bookshelf.occupancy() lt 0.6>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.4 and $ARedSecret.bookshelf.getOccupancy() lte 0.6>>
         <<= $ARedSecret.loc.bookshelf_half>>
-    <<elseif $ARedSecret.bookshelf.occupancy() gt 0.6 and $ARedSecret.bookshelf.occupancy() lt 0.8>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.6 and $ARedSecret.bookshelf.getOccupancy() lte 0.8>>
         <<= $ARedSecret.loc.bookshelf_many>>
     <<else>>
         <<= $ARedSecret.loc.bookshelf_almostfull>>
@@ -51,41 +51,46 @@ $ARedSecret.loc.view_bookshelf
 
 $ARedSecret.loc.book_select
 <br>
-<<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>>
-<br><br>
+<blockquote><<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>></blockquote>
+<br>
 
-<!-- 风味文本 -->
-
-<<if _book.finished>> <!-- 已读完 -->
+<<if _book.finished>>
     $ARedSecret.loc.book_select_finished
-<<elseif not _canRead and not _translated>> <!-- 语言能力不足，且非译本 -->
+    <br><br>
+<<elseif not _canRead and not _translated>>
     <<if $ARedSecret[_book.language] eq 0>>
         $ARedSecret.loc.book_select_cannot_read_at_all
     <<else>>
         $ARedSecret.loc.book_select_cannot_read
     <</if>>
-<<elseif not _canUnderstand and not _canTakeRisk>> <!-- 无形之术知识不足，完全无法理解本书 -->
-    $ARedSecret.loc.book_select_cannot_understand
+    <br><br>
+<<elseif not _canUnderstand and not _canTakeRisk>>
+    <<if $ARedSecret[_book.requirements.invisibleArt.type] eq 0>>
+        $ARedSecret.loc.book_select_cannot_understand_at_all
+    <<else>>
+        $ARedSecret.loc.book_select_cannot_understand
+    <</if>>
+    <br><br>
 <<elseif _book.currentPart eq 0>>
     $ARedSecret.loc.book_select_not_started
+    <br><br>
 <<elseif _book.currentPart eq _book.parts.length - 1>>
     $ARedSecret.loc.book_select_last_part
+    <br><br>
 <<else>>
     $ARedSecret.loc.book_select_partially_read
+    <br><br>
 <</if>>
 
-<!-- 无形之术理解仅差一个小等级，此时可以冒险读书 -->
 <<if _canTakeRisk>>
-    <br><br>
     $ARedSecret.loc.book_select_nearly_understand
+    <br><br>
 <</if>>
 
-<!-- 在语言水平不足的情况下得到译本 -->
 <<if not _canRead and _translated and (_canUnderstand or _canTakeRisk)>>
-    <br><br>
     $ARedSecret.loc.book_select_translated_version
+    <br><br>
 <</if>>
-<br><br>
 
 <<if (_canRead or _translated) and (_canUnderstand or _canTakeRisk)>>
     <<if not _book.finished>>
