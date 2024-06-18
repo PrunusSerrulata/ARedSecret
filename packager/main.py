@@ -22,7 +22,7 @@ def get_file_list(dir, pattern=None):
     for p, ds, fs in paths:
         for f in fs:
             file = os.path.join(p, f).replace("\\", "/")[2:]
-            if not re.search(presets.ignore, file) and (not pattern or re.search(pattern, file)):
+            if not presets.ignore.search(file) and (not pattern or re.search(pattern, file)):
                 files.append(file)
     return files
 
@@ -88,7 +88,7 @@ def pack():
         for p, ds, fs in paths:
             for f in fs:
                 file = os.path.join(p, f).replace("\\", "/")[2:]
-                if not re.search(presets.ignore, file):
+                if not presets.ignore.search(file):
                     print("Packing " + file)
                     zf.write(file)
     

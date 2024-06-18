@@ -1,6 +1,9 @@
 dol-with-ml/
 packager/__pycache__/
 
+wiki/.*
+wiki/*.drawio
+
 .boot.json
 .run.bat
 ARedSecret.mod.zip
