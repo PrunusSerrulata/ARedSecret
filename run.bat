@@ -1,3 +1,3 @@
 @echo off
 
-python packager\main.py -s
+python packager\main.py

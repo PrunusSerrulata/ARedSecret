@@ -13,6 +13,6 @@ version = "-"
 
 additionFile = [ "assetsList.json" ]
 additionDir = [ "assets" ]
-scriptFileList_inject_early = [ "javascript/utils.js" ]
+scriptFileList_inject_early = [ "javascript/utils.js", "javascript/sfw.js" ]
 scriptFileList_earlyload = []
 scriptFileList_preload = []

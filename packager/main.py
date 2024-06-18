@@ -66,6 +66,7 @@ def get_boot_config():
         "modVersion": "^1.2.0",
         "params": read_json("./packager/tweeReplacements.json")
     })
+    
     boot["dependenceInfo"].append({
             "modName": "BeautySelectorAddon",
             "version": "^2.0.0"
@@ -74,11 +75,15 @@ def get_boot_config():
             "modName": "TweeReplacer",
             "version": "^1.2.0"
     })
+    boot["dependenceInfo"].append({
+            "modName": "Simple Frameworks",
+            "version": ">=1.0.0"
+    })
     
     return boot
 
 def pack():
-    with zipfile.ZipFile(presets.name+".mod.zip", mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
+    with zipfile.ZipFile(f"{presets.name}.mod.zip", mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
         paths = os.walk("./")
         for p, ds, fs in paths:
             for f in fs:
@@ -104,9 +109,9 @@ if __name__ == "__main__":
         
     pack()
     
-    shutil.copyfile(presets.name+".mod.zip", "./dol-with-ml/mods/"+presets.name+".mod.zip")
+    shutil.copyfile(f"{presets.name}.mod.zip", f"./dol-with-ml/mods/{presets.name}.mod.zip")
     with open("./dol-with-ml/modList.json", "w") as f:
-        json.dump(["mods/"+presets.name+".mod.zip"], f)
+        json.dump(["mods/Simple.Frameworks.zip", f"mods/{presets.name}.mod.zip"], f)
         
     if len(sys.argv) > 1 and sys.argv[1] == "-s" and os.path.exists("./dol-with-ml/"):
         print()

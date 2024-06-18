@@ -1,15 +1,5 @@
 [
     {
-        "passage": "Characteristics",
-        "findRegex": "(?<=<<characteristic-box _housekeepingConfig>>)",
-        "replace": "<<characteristic-Languages>>"
-    },
-    {
-        "passage": "Characteristics",
-        "findRegex": "(?=<br>\n<</widget>>)",
-        "replace": "<<characteristic-InvisibleArts>>"
-    },
-    {
         "passage": "Bedroom",
         "findRegex": "(?<=<<deskText \"noicon\">>)",
         "replace": "<<bookshelfText>><br><br>"

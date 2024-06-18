@@ -1,6 +1,6 @@
 "use strict";
 
-window.ARedSecret = window.ARedSecret || {};
+window.ARedSecret = window.ARedSecret ?? {};
 
 window.ARedSecret.utils = {
     getHourTimeString: function (minutes) {
