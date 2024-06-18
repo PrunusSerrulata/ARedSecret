@@ -2,6 +2,8 @@
 boot.json
 assetsList.json
 ARedSecret.mod.zip
+run.bat
+run.sh
 packager/test.py
 dol-with-ml/
 packager/__pycache__/
