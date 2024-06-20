@@ -1,6 +1,6 @@
 "use strict";
 
-window.ARedSecret = window.ARedSecret ?? {};
+window.ARedSecret ??= {};
 
 window.ARedSecret.utils = {
     isFileExists(path) {
@@ -34,7 +34,7 @@ window.ARedSecret.utils = {
                 grades = window.V.ARedSecret.IASkillGrades;
                 break;
             default:
-                return "";
+                return;
         }
 
         for (let i = 0; i < grades.length; i++) {
@@ -48,6 +48,27 @@ window.ARedSecret.utils = {
     getSkillLevelText(score, type) {
         const level = this.getSkillLevel(score, type).level;
         return `<span class="${level.color}">${level.level}</span>`;
+    },
+
+    getCappedSkillLevel(type, subjectLevel) {
+        let maxLevel, grades;
+        switch (type) {
+            case "language":
+            case "lang":
+            case 0:
+                grades = window.V.ARedSecret.languageSkillGrades;
+                maxLevel = Math.min(2 + subjectLevel, grades.length);
+                break;
+            case "invisible arts":
+            case "ia":
+            case 1:
+                grades = window.V.ARedSecret.IASkillGrades;
+                maxLevel = Math.min(4 + subjectLevel*2, grades.length);
+                break;
+            default:
+                return;
+        }
+        return { maxLevel: maxLevel, maxScore: grades[maxLevel].requiredValue };
     },
 
     draw(array, n = 1) {

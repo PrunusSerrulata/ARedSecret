@@ -40,6 +40,7 @@
 
 :: ARedSecret Location SunsetBookstore FirstVisit 1
 
+<<set $outside to 0>>
 $ARedSecret.loc.sunset_bookstore_first_visit_1
 <br><br>
 
@@ -73,6 +74,7 @@ $ARedSecret.loc.sunset_bookstore_first_visit_3
 
 :: ARedSecret Location SunsetBookstore
 
+<<set $outside to 0>>
 <<if $ARedSecret.temp.backFromSearching>>
     <<unset $ARedSecret.temp.backFromSearching>>
     $ARedSecret.loc.sunset_bookstore_back
@@ -87,7 +89,7 @@ $ARedSecret.loc.sunset_bookstore_catherine_default
 <<else>>
     $ARedSecret.loc.sunset_bookstore_search_no_book
 <</if>>
-<br>
+<br><br>
 <<link [[$ARedSecret.loc.leave (0:01)|Residential alleyways]]>><<pass 1>><</link>>
 
 
@@ -123,9 +125,7 @@ $ARedSecret.loc.sunset_bookstore_catherine_default
 <<set _haveAVersion to _have or _haveOrigin or _haveTranslated>>
 
 $ARedSecret.loc.book_select
-<br>
 <blockquote><<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>></blockquote>
-<br>
 
 <span class="ars-trim-space">
     <<if _book.language and not _translated>>
@@ -163,8 +163,8 @@ $ARedSecret.loc.book_select
             <<if not _canRead and not _book.finished>>
                 $ARedSecret.loc.symbol.comma
                 $ARedSecret.loc.sunset_bookstore_selected_lang_skill_2
-                $ARedSecret.loc.symbol.period
             <</if>>
+                $ARedSecret.loc.symbol.period
         <</if>>
     <</if>>
 

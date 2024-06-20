@@ -37,12 +37,10 @@ V.ARedSecret.bookshelf = {
     type: "basic",
     capacity: 10,
     books: [
-        { id: "orchidtransfigurations1", translated: true},
-        { id: "dehoris1" },
-        { id: "dehoris1", translated: true },
-        { id: "twentysixenticementsseventorments" },
+        { id: "test9", },
+        { id: "test_latin"},
     ],
-    get occupancy() { return this.books.length / this.capacity },
+    getOccupancy() { return this.books.length / this.capacity; },
 };
 
 V.ARedSecret.schoolLibInitBook = window.ARedSecret.utils.draw(schoolLibInitBooks)[0];

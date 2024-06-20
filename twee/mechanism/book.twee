@@ -27,10 +27,8 @@
 <<set _book to $ARedSecret.books[$ARedSecret.temp.currentBook.id]>>
 
 <<= either($ARedSecret.loc.book_reading_start)>>
-<br><br>
 
 <blockquote><<= $ARedSecret.loc.books[$ARedSecret.temp.currentBook.id].texts[_book.currentPart*2]>></blockquote>
-<br>
 
 <<set _link to $ARedSecret.loc.continue>>
 <<set _link += "(" + ARedSecret.utils.getHourTimeString(_book.parts[_book.currentPart]/2) + ")">>
@@ -43,10 +41,8 @@
 <<set _book to $ARedSecret.books[$ARedSecret.temp.currentBook.id]>>
 
 <blockquote><<= $ARedSecret.loc.books[$ARedSecret.temp.currentBook.id].texts[_book.currentPart*2+1]>></blockquote>
-<br>
 
 <<= either($ARedSecret.loc.book_reading_end)>>
-<br><br>
 
 <<= _book.effects[_book.currentPart]()>>
 
@@ -67,7 +63,6 @@
 <<set _book to $ARedSecret.books[$ARedSecret.temp.currentBook.id]>>
 
 <<= either($ARedSecret.loc.book_reading_reread)>>
-<br><br>
 
 <blockquote>
     <<for _i range $ARedSecret.loc.books[$ARedSecret.temp.currentBook.id].texts>>
@@ -75,7 +70,6 @@
         <br><br>
     <</for>>
 </blockquote>
-<br>
 
 <<unset $ARedSecret.temp.currentBook>>
 <<link [[$ARedSecret.loc.back|$ARedSecret.reading_return_dest]]>><<unset $ARedSecret.reading_return_dest>><</link>>

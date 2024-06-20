@@ -5,18 +5,64 @@
     <<set _amount to _args[1]>>
 
     <<if _type eq "secrethistories">>
+        <<set _maxScore to ARedSecret.utils.getCappedSkillLevel("ia", $historytrait).maxScore>>
+        <<set _warn to $ARedSecret.secrethistories + _amount >= _maxScore>>
+        <<set _amount to Math.min(_amount, _maxScore - $ARedSecret.secrethistories)>>
     <</if>>
 
     <<set $ARedSecret[_type] += _amount>>
-    <<if _amount lte 50>>
+    <<if _amount gt 0 and _amount lte 10>>
         $ARedSecret.loc.gain_ia_knowledge_1
-    <<elseif _amount gt 50 and _amount lt 100>>
+    <<elseif _amount gt 10 and _amount lte 25>>
         $ARedSecret.loc.gain_ia_knowledge_2
-    <<elseif _amount gt 100 and _amount lt 150>>
+    <<elseif _amount gt 25 and _amount lte 50>>
         $ARedSecret.loc.gain_ia_knowledge_3
-    <<elseif _amount gt 150 and _amount lt 200>>
+    <<elseif _amount gt 50 and _amount lte 100>>
         $ARedSecret.loc.gain_ia_knowledge_4
-    <<elseif _amount gt 200>>
+    <<elseif _amount gt 100>>
         $ARedSecret.loc.gain_ia_knowledge_5
+    <</if>>
+    
+    <<if _amount lt _args[1] or _warn>>
+        <br>
+        <<if _amount eq 0>>
+            $ARedSecret.loc.gain_ia_secrethistories_capped_2
+        <<else>>
+            $ARedSecret.loc.gain_ia_secrethistories_capped_1
+        <</if>>
+        $ARedSecret.loc.gain_ia_secrethistories_capped_tip
+    <</if>>
+<</widget>>
+
+<<widget "gainLanguageKnowledge">>
+    <<set _type to _args[0]>>
+    <<set _amount to _args[1]>>
+    <<set _currentScore to $ARedSecret[_type]>>
+
+    <<set _maxScore to ARedSecret.utils.getCappedSkillLevel("lang", $englishtrait).maxScore>>
+    <<set _warn to _currentScore + _amount >= _maxScore>>
+    <<set _amount to Math.min(_amount, _maxScore - _currentScore)>>
+
+    <<set $ARedSecret[_type] += _amount>>
+    <<if _amount gt 0 and _amount lte 10>>
+        $ARedSecret.loc.gain_language_knowledge_1
+    <<elseif _amount gt 10 and _amount lte 25>>
+        $ARedSecret.loc.gain_language_knowledge_2
+    <<elseif _amount gt 25 and _amount lte 50>>
+        $ARedSecret.loc.gain_language_knowledge_3
+    <<elseif _amount gt 50 and _amount lte 100>>
+        $ARedSecret.loc.gain_language_knowledge_4
+    <<elseif _amount gt 100>>
+        $ARedSecret.loc.gain_language_knowledge_5
+    <</if>>
+
+    <<if _amount lt _args[1] or _warn>>
+        <br>
+        <<if _amount eq 0>>
+            $ARedSecret.loc.gain_language_capped_2
+        <<else>>
+            $ARedSecret.loc.gain_language_capped_1
+        <</if>>
+        $ARedSecret.loc.gain_language_capped_tip
     <</if>>
 <</widget>>

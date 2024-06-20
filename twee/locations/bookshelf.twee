@@ -2,15 +2,15 @@
 
 <<widget "bookshelfText">>
     <<ind>>
-    <<if $ARedSecret.bookshelf.occupancy eq 0>>
+    <<if $ARedSecret.bookshelf.getOccupancy() eq 0>>
         <<= $ARedSecret.loc.bookshelf_empty>>
-    <<elseif $ARedSecret.bookshelf.occupancy eq 1>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() eq 1>>
         <<= $ARedSecret.loc.bookshelf_full>>
-    <<elseif $ARedSecret.bookshelf.occupancy gt 0 and $ARedSecret.bookshelf.occupancy lte 0.4>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0 and $ARedSecret.bookshelf.getOccupancy() lte 0.4>>
         <<= $ARedSecret.loc.bookshelf_few>>
-    <<elseif $ARedSecret.bookshelf.occupancy gt 0.4 and $ARedSecret.bookshelf.occupancy lte 0.6>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.4 and $ARedSecret.bookshelf.getOccupancy() lte 0.6>>
         <<= $ARedSecret.loc.bookshelf_half>>
-    <<elseif $ARedSecret.bookshelf.occupancy gt 0.6 and $ARedSecret.bookshelf.occupancy lte 0.8>>
+    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.6 and $ARedSecret.bookshelf.getOccupancy() lte 0.8>>
         <<= $ARedSecret.loc.bookshelf_many>>
     <<else>>
         <<= $ARedSecret.loc.bookshelf_almostfull>>
@@ -69,9 +69,7 @@ $ARedSecret.loc.view_bookshelf
 <<set _canTakeRisk to !_canUnderstand && (ARedSecret.utils.getSkillLevel(_book.requirements.invisibleArt.value, "ia").index - ARedSecret.utils.getSkillLevel($ARedSecret[_book.requirements.invisibleArt.type], "ia").index <= 1)>>
 
 $ARedSecret.loc.book_select
-<br>
 <blockquote><<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>></blockquote>
-<br>
 
 <<if _book.finished>>
     $ARedSecret.loc.book_select_finished
