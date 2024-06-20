@@ -15,6 +15,6 @@ version = "0.0.1-alpha"
 
 additionFile = [ "assetsList.json" ]
 additionDir = [ "assets" ]
-scriptFileList_inject_early = [ "javascript/utils.js", "javascript/sfw.js" ]
+scriptFileList_inject_early = [ "javascript/inject-early/utils.js", "javascript/inject-early/sfw.js" ]
 scriptFileList_earlyload = []
 scriptFileList_preload = []

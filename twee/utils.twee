@@ -1,8 +1,12 @@
-:: ARedSecret Mechanism Utils [widget]
+:: ARedSecret Utils [widget]
 
 <<widget "gainIAKnowledge">>
     <<set _type to _args[0]>>
     <<set _amount to _args[1]>>
+
+    <<if _type eq "secrethistories">>
+    <</if>>
+
     <<set $ARedSecret[_type] += _amount>>
     <<if _amount lte 50>>
         $ARedSecret.loc.gain_ia_knowledge_1

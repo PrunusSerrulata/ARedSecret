@@ -1,0 +1,249 @@
+:: ARedSecret Location SunsetBookstore Widgets [widget]
+
+<<widget "bookstoreBooksUpdate">>
+    <<set _random to randomFloat(1.0)>>
+    <<if _random gte 0.9>>
+        <<set _count = 3>>
+    <<elseif _random gte 0.6>>
+        <<set _count = 2>>
+    <<else>>
+        <<set _count = 1>>
+    <</if>>
+
+    <<set $ARedSecret.daily.bookstoreBooks to ARedSecret.utils.draw($ARedSecret.bookstoreInventory, _count)>>
+<</widget>>
+
+<<widget "linkBookInBookstore">>
+    <<set _index to _args[0]>>
+    <<set _translated to _args[1].translated>>
+    <<set _book to $ARedSecret.books[_args[1].id]>>
+    <<set _link to $ARedSecret.loc.check + $ARedSecret.loc.books[_book.id].title>>
+
+    <<bookicon _book.id _translated>><<link [[_link|ARedSecret Location SunsetBookstore SelectBook]]>>
+        <<set $ARedSecret.temp.currentBook to Object.assign(_args[1], { index: _args[0], location: "Sunset Bookstore" })>>
+    <</link>>
+<</widget>>
+
+<<widget "linkToSunsetBookstore">>
+    <<if $ARedSecret.flags.basicsRevealed>>
+        <<ind>>
+        <<if $ARedSecret.flags.sunsetBookstoreVisited>>
+            <<link [[$ARedSecret.loc.sunset_bookstore (0:01)|ARedSecret Location SunsetBookstore]]>><<pass 1>><</link>>
+        <<else>>
+            <<link [[$ARedSecret.loc.sunset_bookstore_unvisited (0:01)|ARedSecret Location SunsetBookstore FirstVisit 1]]>><<pass 1>><</link>>
+        <</if>>
+        <br>
+    <</if>>
+<</widget>>
+
+
+
+:: ARedSecret Location SunsetBookstore FirstVisit 1
+
+$ARedSecret.loc.sunset_bookstore_first_visit_1
+<br><br>
+
+<<link [[$ARedSecret.loc.enter (0:01)|ARedSecret Location SunsetBookstore FirstVisit 2]]>><<pass 1>><</link>>
+<br>
+<<link [[$ARedSecret.loc.leave (0:01)|Residential alleyways]]>><<pass 1>><</link>>
+
+
+
+:: ARedSecret Location SunsetBookstore FirstVisit 2
+
+$ARedSecret.loc.sunset_bookstore_first_visit_2
+<br><br>
+
+<<link [[$ARedSecret.loc.observe (0:01)|ARedSecret Location SunsetBookstore FirstVisit 3]]>><<pass 1>><</link>>
+
+
+
+:: ARedSecret Location SunsetBookstore FirstVisit 3
+
+$ARedSecret.loc.sunset_bookstore_first_visit_3
+<br><br>
+<span class="gold">$ARedSecret.loc.sunset_bookstore_found</span>
+<br><br>
+
+<<set $ARedSecret.flags.sunsetBookstoreVisited to true>>
+<<bookstoreBooksUpdate>>
+<<link [[$ARedSecret.loc.sunset_bookstore_search_books (0:10)|ARedSecret Location SunsetBookstore Searching]]>><<pass 10>><</link>>
+
+
+
+:: ARedSecret Location SunsetBookstore
+
+<<if $ARedSecret.temp.backFromSearching>>
+    <<unset $ARedSecret.temp.backFromSearching>>
+    $ARedSecret.loc.sunset_bookstore_back
+<<else>>
+    $ARedSecret.loc.sunset_bookstore_enter
+<</if>>
+$ARedSecret.loc.sunset_bookstore_catherine_default
+<br><br>
+
+<<if $ARedSecret.daily.bookstoreBooks.length gt 0>>
+    <<link [[$ARedSecret.loc.sunset_bookstore_search_books (0:10)|ARedSecret Location SunsetBookstore Searching]]>><<pass 10>><</link>>
+<<else>>
+    $ARedSecret.loc.sunset_bookstore_search_no_book
+<</if>>
+<br>
+<<link [[$ARedSecret.loc.leave (0:01)|Residential alleyways]]>><<pass 1>><</link>>
+
+
+
+:: ARedSecret Location SunsetBookstore Searching
+
+<<if $ARedSecret.daily.bookstoreBooks.length lt 1>>
+    $ARedSecret.loc.sunset_bookstore_searching_no_book
+    <br>
+<<else>>
+    $ARedSecret.loc.sunset_bookstore_searching
+    <br><br>
+    <<for _i, _v range $ARedSecret.daily.bookstoreBooks>>
+        <<linkBookInBookstore _i _v>>
+        <br>
+    <</for>>
+<</if>>
+
+<br>
+<<link [[$ARedSecret.loc.back|ARedSecret Location SunsetBookstore]]>><<set $ARedSecret.temp.backFromSearching to true>><</link>>
+
+:: ARedSecret Location SunsetBookstore SelectBook
+
+<<set _book to $ARedSecret.books[$ARedSecret.temp.currentBook.id]>>
+<<set _sellPrice to _book.basePrice * 1.5>>
+<<set _translated to $ARedSecret.temp.currentBook.translated>>
+<<set _canRead to !_book.language || _book.requirements.language <= $ARedSecret[_book.language]>>
+<<set _canUnderstand to !(_book.requirements?.invisibleArt) || _book.requirements.invisibleArt.value <= $ARedSecret[_book.requirements.invisibleArt.type]>>
+<<set _canTakeRisk to !_canUnderstand && (ARedSecret.utils.getSkillLevel(_book.requirements.invisibleArt.value, "ia").index - ARedSecret.utils.getSkillLevel($ARedSecret[_book.requirements.invisibleArt.type], "ia").index <= 1)>>
+<<set _have to $ARedSecret.bookshelf.books.find(e => { return e.id === _book.id && e.translated === _translated; })>>
+<<set _haveOrigin to $ARedSecret.bookshelf.books.find(e => { return e.id === _book.id && !e.translated; })>>
+<<set _haveTranslated to $ARedSecret.bookshelf.books.find(e => { return e.id === _book.id && e.translated; })>>
+<<set _haveAVersion to _have or _haveOrigin or _haveTranslated>>
+
+$ARedSecret.loc.book_select
+<br>
+<blockquote><<= $ARedSecret.loc.books[_book.id].desc[!!_translated+0]>></blockquote>
+<br>
+
+<span class="ars-trim-space">
+    <<if _book.language and not _translated>>
+        <<set _mentioned to true>>
+        $ARedSecret.loc.sunset_bookstore_selected_lang
+        <<if not _canRead>>
+            $ARedSecret.loc.symbol.comma
+            $ARedSecret.loc.sunset_bookstore_selected_lang_skill
+            $ARedSecret.loc.symbol.period
+        <</if>>
+        <br>
+    <</if>>
+</span>
+
+<span class="ars-trim-space">
+    <<if not _canUnderstand>>
+        <<if _mentioned>>
+            $ARedSecret.loc.it
+        <<else>>
+            $ARedSecret.loc.this_book
+        <</if>>
+            $ARedSecret.loc.sunset_bookstore_selected_ia_skill
+        <br>
+    <</if>>
+</span>
+
+<span class="ars-trim-space">
+    <<if _haveAVersion>>
+        <<if _have>>
+            $ARedSecret.loc.sunset_bookstore_selected_have
+        <<elseif not _have and _haveTranslated>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_translated
+        <<else>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_origin
+            <<if not _canRead and not _book.finished>>
+                $ARedSecret.loc.symbol.comma
+                $ARedSecret.loc.sunset_bookstore_selected_lang_skill_2
+                $ARedSecret.loc.symbol.period
+            <</if>>
+        <</if>>
+    <</if>>
+
+    <<if _have or (_haveOrigin and (_canRead or _book.finished)) or (not _haveOrigin and _haveTranslated)>>
+        $ARedSecret.loc.symbol.comma
+        <<if _book.finished>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_4
+        <<elseif _book.currentPart eq 0>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_1
+        <<elseif _book.currentPart eq _book.parts.length - 1>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_3
+        <<else>>
+            $ARedSecret.loc.sunset_bookstore_selected_have_2
+        <</if>>
+    <<else>>
+        <br>
+        <<if _book.finished>>
+            $ARedSecret.loc.book_select_finished
+        <<elseif _book.currentPart eq 0>>
+            $ARedSecret.loc.book_select_not_started
+        <<elseif _book.currentPart eq _book.parts.length - 1>>
+            $ARedSecret.loc.book_select_last_part
+        <<else>>
+            $ARedSecret.loc.book_select_partially_read
+        <</if>>
+<</if>>
+</span>
+<<if not $ARedSecret.loc.style_properties.space>>
+    <<run $(document).one(":passagedisplay", function (ev) {
+        Object.values($(".ars-trim-space")).forEach(i => {
+            i.innerHTML &&= i.innerHTML?.trim().replace(/(?<![>A-Za-z])\s+(?![<A-Za-z])/g,"");
+        })
+    })>>
+<</if>>
+
+<br><br>
+
+<<if $money lt _sellPrice>>
+    <span class="purple">$ARedSecret.loc.sunset_bookstore_buy_cannot_afford</span>
+<<elseif $ARedSecret.bookshelf.books.length eq $ARedSecret.bookshelf.capacity>>
+    <span class="purple">$ARedSecret.loc.sunset_bookstore_buy_no_room</span>
+<<else>>
+    <<set _skillInsufficient to !(_canRead or _translated) && !_canUnderstand>>
+    <<set _linkSuffix to " (0:01 £"+(_sellPrice/100).toLocaleString()+")">>
+    <span id="sunset-bookstore-confirm-buying">
+        <<link $ARedSecret.loc.buy_this_book+_linkSuffix>>
+            <<if _haveAVersion or _skillInsufficient or _book.finished>>
+                <<replace "#sunset-bookstore-confirm-buying" t8n>><<if _haveAVersion>>
+                    $ARedSecret.loc.sunset_bookstore_buy_already_have
+                <<elseif _book.finished>>
+                    $ARedSecret.loc.sunset_bookstore_buy_finished
+                <<else>>
+                    $ARedSecret.loc.sunset_bookstore_buy_skill_insufficient
+                <</if>>
+                <br>
+                <<set _confirm to $ARedSecret.loc.confirm + _linkSuffix>>
+                <<link [[$ARedSecret.loc.cancel|ARedSecret Location SunsetBookstore SelectBook]]>><</link>><br>
+                <<link [[_confirm|ARedSecret Location SunsetBookstore SelectBook Bought]]>><<pass 1>><</link>><</replace>>
+            <<else>>
+                <<pass 1>>
+                <<goto "ARedSecret Location SunsetBookstore SelectBook Bought">>
+            <</if>>
+        <</link>>
+    </span>
+<</if>>
+
+<br><br>
+<<link [[$ARedSecret.loc.back|ARedSecret Location SunsetBookstore Searching]]>><</link>>
+
+:: ARedSecret Location SunsetBookstore SelectBook Bought
+
+<<set _book to $ARedSecret.temp.currentBook>>
+<<run $ARedSecret.bookshelf.books.push({ id: _book.id, translated: _book.translated })>>
+<<run $ARedSecret.daily.bookstoreBooks.splice(_book.index, 1)>>
+<<run $ARedSecret.bookstoreInventory.splice($ARedSecret.bookstoreInventory.findIndex(e => { e.id === _book.id && e.translated === _translated}), 1)>>
+<<set _price to $ARedSecret.books[$ARedSecret.temp.currentBook.id].basePrice * 1.5>>
+<<set $money -= _price>>
+<<unset $ARedSecret.temp.currentBook>>
+
+$ARedSecret.loc.sunset_bookstore_bought
+<br><br>
+<<link [[$ARedSecret.loc.continue|ARedSecret Location SunsetBookstore Searching]]>><</link>>

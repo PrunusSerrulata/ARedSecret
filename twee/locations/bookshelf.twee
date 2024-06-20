@@ -1,22 +1,41 @@
-:: ARedSecret Location Home Bedroom [widget]
+:: ARedSecret Location Home Bedroom Bookshelf Widgets [widget]
 
 <<widget "bookshelfText">>
     <<ind>>
-    <<if $ARedSecret.bookshelf.getOccupancy() eq 0>>
+    <<if $ARedSecret.bookshelf.occupancy eq 0>>
         <<= $ARedSecret.loc.bookshelf_empty>>
-    <<elseif $ARedSecret.bookshelf.getOccupancy() eq 1>>
+    <<elseif $ARedSecret.bookshelf.occupancy eq 1>>
         <<= $ARedSecret.loc.bookshelf_full>>
-    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0 and $ARedSecret.bookshelf.getOccupancy() lte 0.4>>
+    <<elseif $ARedSecret.bookshelf.occupancy gt 0 and $ARedSecret.bookshelf.occupancy lte 0.4>>
         <<= $ARedSecret.loc.bookshelf_few>>
-    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.4 and $ARedSecret.bookshelf.getOccupancy() lte 0.6>>
+    <<elseif $ARedSecret.bookshelf.occupancy gt 0.4 and $ARedSecret.bookshelf.occupancy lte 0.6>>
         <<= $ARedSecret.loc.bookshelf_half>>
-    <<elseif $ARedSecret.bookshelf.getOccupancy() gt 0.6 and $ARedSecret.bookshelf.getOccupancy() lte 0.8>>
+    <<elseif $ARedSecret.bookshelf.occupancy gt 0.6 and $ARedSecret.bookshelf.occupancy lte 0.8>>
         <<= $ARedSecret.loc.bookshelf_many>>
     <<else>>
         <<= $ARedSecret.loc.bookshelf_almostfull>>
     <</if>>
     <br>
     <<link  [[$ARedSecret.loc.link_view_bookshelf|ARedSecret Location Home Bedroom Bookshelf]]>><</link>>
+<</widget>>
+
+<<widget "linkBookInBookshelf">>
+    <<set _index to _args[0]>>
+    <<set _translated to _args[1].translated>>
+    <<set _book to $ARedSecret.books[_args[1].id]>>
+    <<set _link to $ARedSecret.loc.check + $ARedSecret.loc.books[_book.id].title>>
+    <<if _book.language>>
+        <<set _link += " (" + (_translated ? $ARedSecret.loc.translated_version : $ARedSecret.loc[_book.language]) + ")">>
+    <</if>>
+    <<if _book.finished>>
+        <<set _link += " (" + $ARedSecret.loc.book_finished + ")">>
+    <<elseif _book.parts.length gt 1>>
+        <<set _link += " (" + _book.currentPart + "/" + _book.parts.length + ")">>
+    <</if>>
+
+    <<bookicon _book.id _translated>><<link [[_link|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>>
+        <<set $ARedSecret.temp.currentBook to Object.assign(_args[1], { index: _args[0], location: "home" })>>
+    <</link>>
 <</widget>>
 
 
@@ -32,7 +51,7 @@ $ARedSecret.loc.view_bookshelf
 <br><br>
 
 <<for _i, _v range $ARedSecret.bookshelf.books>>
-    <<linkBookinBookshelf _i _v>>
+    <<linkBookInBookshelf _i _v>>
     <br>
 <</for>>
 
@@ -43,11 +62,11 @@ $ARedSecret.loc.view_bookshelf
 
 :: ARedSecret Location Home Bedroom Bookshelf SelectBook
 
-<<set _book to $ARedSecret.books[$ARedSecret.current_book.id]>>
-<<set _translated to $ARedSecret.current_book.translated>>
+<<set _book to $ARedSecret.books[$ARedSecret.temp.currentBook.id]>>
+<<set _translated to $ARedSecret.temp.currentBook.translated>>
 <<set _canRead to !_book.language || _book.requirements.language <= $ARedSecret[_book.language]>>
 <<set _canUnderstand to !(_book.requirements?.invisibleArt) || _book.requirements.invisibleArt.value <= $ARedSecret[_book.requirements.invisibleArt.type]>>
-<<set _canTakeRisk to !_canUnderstand && _book.requirements.invisibleArt.value-100 <= $ARedSecret[_book.requirements.invisibleArt.type]>>
+<<set _canTakeRisk to !_canUnderstand && (ARedSecret.utils.getSkillLevel(_book.requirements.invisibleArt.value, "ia").index - ARedSecret.utils.getSkillLevel($ARedSecret[_book.requirements.invisibleArt.type], "ia").index <= 1)>>
 
 $ARedSecret.loc.book_select
 <br>
@@ -56,31 +75,26 @@ $ARedSecret.loc.book_select
 
 <<if _book.finished>>
     $ARedSecret.loc.book_select_finished
-    <br><br>
 <<elseif not _canRead and not _translated>>
     <<if $ARedSecret[_book.language] eq 0>>
         $ARedSecret.loc.book_select_cannot_read_at_all
     <<else>>
         $ARedSecret.loc.book_select_cannot_read
     <</if>>
-    <br><br>
 <<elseif not _canUnderstand and not _canTakeRisk>>
     <<if $ARedSecret[_book.requirements.invisibleArt.type] eq 0>>
         $ARedSecret.loc.book_select_cannot_understand_at_all
     <<else>>
         $ARedSecret.loc.book_select_cannot_understand
     <</if>>
-    <br><br>
 <<elseif _book.currentPart eq 0>>
     $ARedSecret.loc.book_select_not_started
-    <br><br>
 <<elseif _book.currentPart eq _book.parts.length - 1>>
     $ARedSecret.loc.book_select_last_part
-    <br><br>
 <<else>>
     $ARedSecret.loc.book_select_partially_read
-    <br><br>
 <</if>>
+<br><br>
 
 <<if _canTakeRisk>>
     $ARedSecret.loc.book_select_nearly_understand
@@ -121,8 +135,8 @@ $ARedSecret.loc.book_select
     <<link [[$ARedSecret.loc.cancel|ARedSecret Location Home Bedroom Bookshelf SelectBook]]>><</link>>
     <br>
     <<link "<span class='red'>$ARedSecret.loc.book_confirm_discard_yes</span>" "ARedSecret Location Home Bedroom Bookshelf">>
-        <<run $ARedSecret.bookshelf.books.splice($ARedSecret.current_book.bookshelfIndex, 1)>>
-        <<unset $ARedSecret.current_book>>
+        <<run $ARedSecret.bookshelf.books.splice($ARedSecret.temp.currentBook.index, 1)>>
+        <<unset $ARedSecret.temp.currentBook>>
     <</link>>
 <</linkreplace>>
 <br><br>

@@ -10,7 +10,7 @@
 
 <br>
 
-本模组依旧处在早期开发阶段，尚无可游玩内容。
+本mod依旧处于早期开发阶段，仅有部分机制实现，暂未包含剧情等内容。
 
 <br>
 
@@ -18,7 +18,7 @@
 
 本模组基于[ModLoader](https://github.com/Lyoko-Jeremie/sugarcube-2-ModLoader)开发，请使用带ModLoader的DoL版本游玩本mod。
 
-此外，本模组使用了[简易框架](https://github.com/emicoto/DOLMods/releases/latest)提供的功能，游玩时请一并加载简易框架，并将其顺序置于本mod**之前**（即先加载简易框架，再加载本mod）。
+此外，本模组使用了[简易框架](https://github.com/emicoto/DOLMods/)提供的功能，游玩时请一并加载简易框架，并将其顺序置于本mod**之前**（即先加载简易框架，再加载本mod）。
 
 <br>
 

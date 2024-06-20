@@ -1,4 +1,8 @@
 {
+    "style_properties": {
+        "space": false
+    },
+
     "latin": "拉丁文",
     "greek": "希腊文",
     "sanskrit": "梵文",
@@ -42,12 +46,12 @@
     "view_bookshelf_count_empty": "但它现在却是空着的，等待着被填满。",
     "book_current_part": "第<<= _book.current_part+1>>部分，",
     "book_select": "你看向<<= $ARedSecret.loc.books[_book.id].title>>——",
-    "book_select_cannot_read": "你需要至少拥有 <<= ARedSecret.utils.getBasicSkillLevelFromScore(_book.requirements.language)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前只有 <<= ARedSecret.utils.getBasicSkillLevelFromScore($ARedSecret[_book.language])>>。",
-    "book_select_cannot_read_at_all": "你需要至少拥有 <<= ARedSecret.utils.getBasicSkillLevelFromScore(_book.requirements.language)>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前一点<<= $ARedSecret.loc[_book.language]>>都不会！",
+    "book_select_cannot_read": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.language, 'language')>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前只有 <<= ARedSecret.utils.getSkillLevelText($ARedSecret[_book.language], 'language')>>。",
+    "book_select_cannot_read_at_all": "你需要至少拥有 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.language, 'language')>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂本书，但你目前一点<<= $ARedSecret.loc[_book.language]>>都不会！",
     "book_select_translated_version": "你的<<= $ARedSecret.loc[_book.language]>>水平不足以阅读原著，但幸运的是，你手里的这本是翻译版。",
-    "book_select_cannot_understand_at_all": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识过于高深，你目前完全无法理解。你至少需要 <<= ARedSecret.utils.getDetailedSkillLevelFromScore(_book.requirements.invisibleArt.value)>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解，但你现在对此一窍不通！",
-    "book_select_cannot_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识过于高深，你目前完全无法理解。你至少需要 <<= ARedSecret.utils.getDetailedSkillLevelFromScore(_book.requirements.invisibleArt.value)>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解，但你现在只有 <<= ARedSecret.utils.getDetailedSkillLevelFromScore($ARedSecret[_book.requirements.invisibleArt.type])>>。",
-    "book_select_nearly_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识对你而言有些复杂，你暂时无法完全理解。如果选择强行阅读，可能会对你的心智产生不良影响。你至少需要 <<= ARedSecret.utils.getDetailedSkillLevelFromScore(_book.requirements.invisibleArt.value)>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能安全并完全地理解本书。",
+    "book_select_cannot_understand_at_all": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识过于高深，你目前完全无法理解。你至少需要 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.invisibleArt.value, 'ia')>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解，但你现在对此一窍不通！",
+    "book_select_cannot_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识过于高深，你目前完全无法理解。你至少需要 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.invisibleArt.value, 'ia')>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解，但你现在只有 <<= ARedSecret.utils.getSkillLevelText($ARedSecret[_book.requirements.invisibleArt.type], 'ia')>>。",
+    "book_select_nearly_understand": "这本书中蕴含的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识对你而言有些复杂，你暂时无法完全理解。如果选择强行阅读，可能会对你的心智产生不良影响。你至少需要 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.invisibleArt.value, 'ia')>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能安全并完全地理解本书。",
     "book_select_not_started": "这本书你还没开始读过。",
     "book_select_partially_read": "这本书你已读过一部分，但还没有读完。",
     "book_select_last_part": "还差最后一点，你就能读完这本书了。",
@@ -71,6 +75,38 @@
     "school_lib_first_found": "你留意到一本略显古旧的书，显然已经很久没有人借阅过了。但不知为何，这本书勾起了你的好奇心……",
     "school_lib_take_book": "拿走",
     "school_lib_book_taken": "这本书的内容让你有点摸不着头脑……或许可以回家仔细阅读。",
+
+    "sunset_bookstore": "日暮书屋",
+    "sunset_bookstore_unvisited": "一家小店？",
+    "sunset_bookstore_first_visit_1": "今天，当你再次走过熟悉的小巷时，你突然被一种未知的//冲动//吸引——<br><br>那是一家小店，你此前无数次经过，却始终熟视无睹直到今天的小店。小小的玻璃门上面挂着一个斜着的的告示牌，写着“正在营业”，字迹娟秀。透过门上的毛玻璃，你隐约能看到店里似乎没有客人，只有许多书架挤满了店里狭小的空间。",
+    "sunset_bookstore_first_visit_2": "你推开门，走了进去。<br>门边柜台后站着一个身着黑色连衣裙的女人，戴着一副半框眼镜，灰色的头发用洁白的缎带扎成高马尾，年纪看上去约莫三十出头。若不是站在这家店的柜台后面，你也许会认为她是你学校里的某位普通老师，不知为何从未在你的记忆里留下印象，就像这家店本身一样。<br><br>当你走进店里的时候，她并未抬头，只是瞥了你一眼——旋即又抬起头来看向你，似乎对你的来访感到些许讶异。<br>但那丝诧异只存留了一瞬。“你不像是会来这里的人，”她的声音清澈如铃，你却听不出什么感情，“但我从不过问客户的名字。慢慢看吧。”<br>你本想说些什么，但她很快又低下头，仿佛你从未来过，只留下透过店门传来的街巷的声音，不知为何几不可闻。你暗自思忖，也许她真的是，或曾是某位你未曾谋面的老师。",
+    "sunset_bookstore_first_visit_3": "你发现柜台后方背对着你的书架上，挂着一幅描绘了夕阳的油画，笔触细腻，色调清冷，虽说画中日光依旧，却令人望而生寒。画的右下角是一行小小的字，写着“//凯瑟琳//”，字迹与门口挂牌上的别无二致。<br>“凯瑟琳·克拉克，”她的声音再次响起，“这是我的名字。日暮书屋，是这家书店的名字。”<br><br>她顿了顿，抬起头，用和她头发一样颜色的灰色眼睛看着你。“无论如何，你找到了这里。日暮书屋//欢迎//它的顾客。”她看上去毫不怀疑你的身份和目的，以及你能走进这家隐秘书店的原因——尽管就在几分钟前，你连这家店的名字都不知道。可即便如此，你也未能从中得到几分宽慰，大概是因为从她的声音里，你还是听不出什么感情。",
+    "sunset_bookstore_found": "你发现了日暮书屋。",
+    "sunset_bookstore_enter": "你走进了日暮书屋。",
+    "sunset_bookstore_back": "你走了回来。",
+    "sunset_bookstore_catherine_default": "凯瑟琳只是一如往常般地站在柜台后面，低着头，不知在看什么东西。",
+    "sunset_bookstore_search_books": "寻找书籍",
+    "sunset_bookstore_search_no_book": "已经没有什么值得搜寻的了，<span class='gold'>或许可以明天再来。</span>",
+    "sunset_bookstore_searching": "你穿行于书架之间，想在这些书籍之中找到一些你感兴趣的，或者可能用得上的书籍。虽然绝大多数书籍对你而言要么味同嚼蜡，要么宛如天书，但在花了一些时间过后，你还是找到了几本可堪一读的书。",
+    "sunset_bookstore_searching_no_book": "你穿行于书架之间，试图在这些书籍之中找到一些你感兴趣的，或者可能用得上的书籍，但是耗费一番功夫之后，你沮丧地发现并没有什么书符合你的要求。<span class='gold'>也许你可以明天再来看看。</span>",
+    "sunset_bookstore_selected_lang": "这本书以<<= $ARedSecret.loc[_book.language]>>写就",
+    "sunset_bookstore_selected_lang_skill": "需要 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.language, 'language')>> 的<<= $ARedSecret.loc[_book.language]>>水平才能读懂，你目前只有 <<= ARedSecret.utils.getSkillLevelText($ARedSecret[_book.language], 'language')>>",
+    "sunset_bookstore_selected_lang_skill_2": "但它<<= $ARedSecret.loc.sunset_bookstore_selected_lang_skill>>",
+    "sunset_bookstore_selected_ia_skill": "需要 <<= ARedSecret.utils.getSkillLevelText(_book.requirements.invisibleArt.value, 'ia')>> 级别的<<= $ARedSecret.loc[_book.requirements.invisibleArt.type]>>之知识才能完全理解。",
+    "sunset_bookstore_selected_have": "你目前拥有这本书",
+    "sunset_bookstore_selected_have_origin": "你目前拥有这本书的<<= $ARedSecret.loc[_book.language]>>原著",
+    "sunset_bookstore_selected_have_translated": "你目前拥有这本书的翻译版",
+    "sunset_bookstore_selected_have_1": "但还没读过。",
+    "sunset_bookstore_selected_have_2": "已经读了一部分。",
+    "sunset_bookstore_selected_have_3": "并且快读完了。",
+    "sunset_bookstore_selected_have_4": "而且已经读完了。",
+    "sunset_bookstore_buy_no_room": "你的书架已满，无法购买本书。",
+    "sunset_bookstore_buy_cannot_afford": "这本书标价 £<<= (_sellPrice/100).toLocaleString()>>，你买不起。",
+    "sunset_bookstore_buy_skill_insufficient": "你目前的技能等级不足以（安全地）阅读本书。",
+    "sunset_bookstore_buy_already_have": "你目前已经拥有这本书。",
+    "sunset_bookstore_buy_finished": "这本书你已读完。",
+    "sunset_bookstore_buy_confirm": "还是要购买吗？",
+    "sunset_bookstore_bought": "你买下了这本<<= $ARedSecret.loc.books[_book.id].title>>，可以回到家后阅读。",
 
     "books": {
         "orchidtransfigurations1": {
@@ -125,22 +161,136 @@
                 "“圣杯的诱惑之数多于其苦痛，但苦痛才是它的真本性。生诞是第一苦痛，而干渴是第七苦痛。”",
                 "要列举杯的诱惑与苦痛，离不开“干涸之地两女巫”哀伤的历史：降生于两个子宫的煎熬，摆脱杯的挣扎与对杯的乞求，对结合为一的共同渴盼。"
             ]
+        },
+        "test1": {
+            "title": "《测试（灯）》",
+            "desc": [
+                "测试（灯）介绍",
+                "测试（灯）（译本）介绍"
+            ],
+            "texts": [
+                "测试（灯）文本",
+                "测试（灯）（译本）文本"
+            ]
+        },
+        "test2": {
+            "title": "《测试（铸）》",
+            "desc": [
+                "测试（铸）介绍",
+                "测试（铸）（译本）介绍"
+            ],
+            "texts": [
+                "测试（铸）文本",
+                "测试（铸）（译本）文本"
+            ]
+        },
+        "test3": {
+            "title": "《测试（刃）》",
+            "desc": [
+                "测试（刃）介绍",
+                "测试（刃）（译本）介绍"
+            ],
+            "texts": [
+                "测试（刃）文本",
+                "测试（刃）（译本）文本"
+            ]
+        },
+        "test4": {
+            "title": "《测试（冬）》",
+            "desc": [
+                "测试（冬）介绍",
+                "测试（冬）（译本）介绍"
+            ],
+            "texts": [
+                "测试（冬）文本",
+                "测试（冬）（译本）文本"
+            ]
+        },
+        "test5": {
+            "title": "《测试（心）》",
+            "desc": [
+                "测试（心）介绍",
+                "测试（心）（译本）介绍"
+            ],
+            "texts": [
+                "测试（心）文本",
+                "测试（心）（译本）文本"
+            ]
+        },
+        "test6": {
+            "title": "《测试（杯）》",
+            "desc": [
+                "测试（杯）介绍",
+                "测试（杯）（译本）介绍"
+            ],
+            "texts": [
+                "测试（杯）文本",
+                "测试（杯）（译本）文本"
+            ]
+        },
+        "test7": {
+            "title": "《测试（蛾）》",
+            "desc": [
+                "测试（蛾）介绍",
+                "测试（蛾）（译本）介绍"
+            ],
+            "texts": [
+                "测试（蛾）文本",
+                "测试（蛾）（译本）文本"
+            ]
+        },
+        "test8": {
+            "title": "《测试（启）》",
+            "desc": [
+                "测试（启）介绍",
+                "测试（启）（译本）介绍"
+            ],
+            "texts": [
+                "测试（启）文本",
+                "测试（启）（译本）文本"
+            ]
+        },
+        "test9": {
+            "title": "《测试（秘史）》",
+            "desc": [
+                "测试（秘史）介绍",
+                "测试（秘史）（译本）介绍"
+            ],
+            "texts": [
+                "测试（秘史）文本",
+                "测试（秘史）（译本）文本"
+            ]
         }
     },
 
     "yes": "是",
     "no": "否",
+    "you": "你",
+    "it": "它",
+    "but": "但",
+    "confirm": "确认",
     "cancel": "取消",
+    "enter": "进入",
     "back": "返回",
+    "leave": "离开",
+    "observe": "观察",
     "read": "阅读",
     "read_this_book": "阅读本书",
     "check": "查看",
     "continue": "继续",
+    "this_book": "这本书",
     "discard_this_book": "丢弃本书",
     "reread_this_book": "重读本书",
     "none": "无",
+    "original_version": "原著",
     "translated_version": "译本",
     "book_finished": "已读完",
+    "buy_this_book": "购买本书",
+
+    "symbol": {
+        "comma": "，",
+        "period": "。"
+    },
 
     "gain_ia_knowledge_1": "你获得了些许关于<<= $ARedSecret.loc[_type]>>的知识。",
     "gain_ia_knowledge_2": "你对<<= $ARedSecret.loc[_type]>>之知识的理解更深了。",

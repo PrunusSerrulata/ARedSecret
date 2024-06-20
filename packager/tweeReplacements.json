@@ -8,5 +8,10 @@
         "passage": "School Library",
         "findRegex": "(?<=oliveExitPassage.*\n\t+<br>\n\t+<</if>>)",
         "replace": "<<schoolLibNewBook>>"
+    },
+    {
+        "passage": "Residential alleyways",
+        "findRegex": "(?<=Residential Thicket\\]\\].*\n\t+.*\n\t+.*>>)",
+        "replace": "<<linkToSunsetBookstore>>"
     }
 ]
