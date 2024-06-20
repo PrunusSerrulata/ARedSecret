@@ -40,7 +40,6 @@
 
 :: ARedSecret Location SunsetBookstore FirstVisit 1
 
-<<set $outside to 0>>
 $ARedSecret.loc.sunset_bookstore_first_visit_1
 <br><br>
 
@@ -52,6 +51,7 @@ $ARedSecret.loc.sunset_bookstore_first_visit_1
 
 :: ARedSecret Location SunsetBookstore FirstVisit 2
 
+<<set $outside to 0>>
 $ARedSecret.loc.sunset_bookstore_first_visit_2
 <br><br>
 

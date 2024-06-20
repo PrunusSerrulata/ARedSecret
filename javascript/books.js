@@ -20,7 +20,10 @@ V.ARedSecret.books = {
         parts: [60],
         basePrice: 2000,
         effects: [
-            () => { return "<<gainIAKnowledge 'grail' 50>><br><br>"; },
+            () => { 
+                V.ARedSecret.flags.basicsRevealed = true;
+                return "<<gainIAKnowledge 'grail' 50>><br><br>"; 
+            },
         ],
     },
     travellingatnight1: {
@@ -29,7 +32,10 @@ V.ARedSecret.books = {
         parts: [60],
         basePrice: 2000,
         effects: [
-            () => { return "<<gainIAKnowledge 'moth' 50>><br><br>"; },
+            () => { 
+                V.ARedSecret.flags.basicsRevealed = true;
+                return "<<gainIAKnowledge 'moth' 50>><br><br>"; 
+            },
         ],
     },
     dehoris1: {
@@ -42,7 +48,10 @@ V.ARedSecret.books = {
         },
         basePrice: 2000,
         effects: [
-            () => { return "<<gainIAKnowledge 'moth' 50>><br><br>"; },
+            () => { 
+                V.ARedSecret.flags.basicsRevealed = true;
+                return "<<gainIAKnowledge 'moth' 50>><br><br>"; 
+            },
         ],
     },
     twentysixenticementsseventorments: {
