@@ -28,15 +28,16 @@
 
 2. *（可选）* 
    - 将带有ModLoader的[预构建版DoL](https://github.com/Lyoko-Jeremie/DoLModLoaderBuild/releases)解压至本仓库根目录下`dol-with-ml`目录内；
-   - 下载[简易框架](https://github.com/emicoto/DOLMods/releases/latest)，重命名为`Simple.Frameworks.zip`，将其置于`dol-with-ml/mods`目录内；
+   - 下载[简易框架](https://github.com/emicoto/DOLMods/releases/latest)，将其重命名为`Simple Frameworks.zip`并置于`dol-with-ml/mods`目录内；
+   - 下载[DoL汉化包](https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization/releases/latest)，将其重命名为`ModI18N.mod.zip`并置于`dol-with-ml/mods`目录内；
 
 3. 在仓库根目录下运行`packager/main.py`；
-   - 对于Windows用户，直接在根目录下运行`run.bat`；
-   - 对于Linux用户，直接在根目录下运行`run.sh`；
+   - 对于Windows用户，直接在根目录下运行`build.bat`；
+   - 对于Linux用户，直接在根目录下运行`build.sh`；
 
    之后在根目录下即可得到打包后的`ARedSecret.mod.zip`。
 
-   如果完成了第二步的操作，则可编辑`run.bat`/`run.sh`，在python命令最后加上参数`-s`，即可在每次打包后自动开启HTTP服务器供测试。
+   如果完成了第二步的操作，则可编辑`build.bat`/`build.sh`，在python命令最后加上参数`--run-server`，即可在每次打包后自动开启HTTP服务器供测试。
 
 <br>
 

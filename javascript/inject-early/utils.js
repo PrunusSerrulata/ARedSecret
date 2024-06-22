@@ -3,16 +3,8 @@
 window.ARedSecret ??= {};
 
 window.ARedSecret.utils = {
-    isFileExists(path) {
+    fileExists(path) {
         return window.modUtils.getModZip("ARedSecret")._zip.files[path]
-    },
-
-    deepEqual(x, y) {
-        const ok = Object.keys, tx = typeof x, ty = typeof y;
-        return x && y && tx === 'object' && tx === ty ? (
-            ok(x).length === ok(y).length &&
-            ok(x).every(key => deepEqual(x[key], y[key]))
-        ) : (x === y);
     },
 
     getHourTimeString(minutes) {
@@ -88,4 +80,12 @@ window.ARedSecret.utils = {
         }
         return res;
     },
+
+    removeTextSpaces(selector) {
+        $(document).one(":passagedisplay", function (ev) {
+            Object.values($(selector)).forEach(i => {
+                i.innerHTML &&= i.innerHTML.trim().replace(/(?<![>A-Za-z])\s+(?![<A-Za-z])/g,"");
+            })
+        })
+    }
 };

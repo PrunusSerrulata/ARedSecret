@@ -4,6 +4,13 @@ function ARS_DayPassed() {
     const fragment = document.createDocumentFragment();
 
     if (V.ARedSecret.flags.sunsetBookstoreVisited) { fragment.append(wikifier("bookstoreBooksUpdate")); }
+    if (!V.ARedSecret.commissions.catherine.unlocked 
+        && V.NPCName.find(e => e.nam === "Catherine").trust > 10 
+        && (V.ARedSecret.lantern >= V.ARedSecret.IASkillGrades[3].requiredValue 
+            || V.ARedSecret.winter >= V.ARedSecret.IASkillGrades[3].requiredValue 
+            || V.ARedSecret.secrethistories >= V.ARedSecret.IASkillGrades[3].requiredValue)) {
+        V.ARedSecret.temp.catherineCommissionReady = true;
+    }
 
     return fragment;
 }

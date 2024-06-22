@@ -61,6 +61,7 @@ $ARedSecret.loc.sunset_bookstore_first_visit_2
 
 :: ARedSecret Location SunsetBookstore FirstVisit 3
 
+<<npc Catherine>>
 $ARedSecret.loc.sunset_bookstore_first_visit_3
 <br><br>
 <span class="gold">$ARedSecret.loc.sunset_bookstore_found</span>
@@ -75,13 +76,27 @@ $ARedSecret.loc.sunset_bookstore_first_visit_3
 :: ARedSecret Location SunsetBookstore
 
 <<set $outside to 0>>
-<<if $ARedSecret.temp.backFromSearching>>
+
+<<set _catherineTrust to $NPCName.find(e => e.nam === "Catherine").trust>>
+<<if $ARedSecret.temp.backFromCommission>>
+    <<unset $ARedSecret.temp.backFromCommission>>
+<<elseif $ARedSecret.temp.backFromSearching>>
     <<unset $ARedSecret.temp.backFromSearching>>
     $ARedSecret.loc.sunset_bookstore_back
-<<else>>
+<<else>>    /* hopped in from alley */
+    <<unset $ARedSecret.temp.catherineAdviceGiven>>
+    <<if not $ARedSecret.commissions.catherine.unlocked 
+         and $ARedSecret.temp.catherineCommissionReady>>
+        <<goto "ARedSecret Location SunsetBookstore UnlockCommission">>
+    <</if>>
     $ARedSecret.loc.sunset_bookstore_enter
 <</if>>
-$ARedSecret.loc.sunset_bookstore_catherine_default
+
+<<if $NPCName.find(e => e.nam === "Catherine").trust lt -5>>
+    $ARedSecret.loc.sunset_bookstore_catherine_neg_trust
+<<else>>
+    $ARedSecret.loc.sunset_bookstore_catherine_default
+<</if>>
 <br><br>
 
 <<if $ARedSecret.daily.bookstoreBooks.length gt 0>>
@@ -193,11 +208,7 @@ $ARedSecret.loc.book_select
 <</if>>
 </span>
 <<if not $ARedSecret.loc.style_properties.space>>
-    <<run $(document).one(":passagedisplay", function (ev) {
-        Object.values($(".ars-trim-space")).forEach(i => {
-            i.innerHTML &&= i.innerHTML?.trim().replace(/(?<![>A-Za-z])\s+(?![<A-Za-z])/g,"");
-        })
-    })>>
+    <<run ARedSecret.utils.removeTextSpaces(".ars-trim-space")>>
 <</if>>
 
 <br><br>
@@ -244,6 +255,62 @@ $ARedSecret.loc.book_select
 <<set $money -= _price>>
 <<unset $ARedSecret.temp.currentBook>>
 
-$ARedSecret.loc.sunset_bookstore_bought
+<span class="ars-trim-space">
+    $ARedSecret.loc.sunset_bookstore_bought_1
+    <<if _catherineTrust lte 10>>
+        $ARedSecret.loc.sunset_bookstore_bought_2
+    <<else>>
+        $ARedSecret.loc.sunset_bookstore_bought_3_1
+        <<if _catherineTrust gt 25 and not $ARedSecret.temp.catherineAdviceGiven>>
+            $ARedSecret.loc.sunset_bookstore_bought_3_2
+            <<set $ARedSecret.temp.catherineAdviceGiven to true>>
+        <</if>>
+        $ARedSecret.loc.sunset_bookstore_bought_3_3
+    <</if>>
+    $ARedSecret.loc.sunset_bookstore_bought_tip
+</span>
 <br><br>
+
+<<if not $ARedSecret.loc.style_properties.space>>
+    <<run ARedSecret.utils.removeTextSpaces(".ars-trim-space")>>
+<</if>>
 <<link [[$ARedSecret.loc.continue|ARedSecret Location SunsetBookstore Searching]]>><</link>>
+
+
+
+:: ARedSecret Location SunsetBookstore UnlockCommission
+
+<<set $ARedSecret.commissions.catherine.unlocked to true>>
+<<unset $ARedSecret.temp.catherineCommissionReady>>
+<<set $ARedSecret.temp.backFromCommission to true>>
+
+<<= $ARedSecret.loc.sunset_bookstore_enter>>
+<<= $ARedSecret.loc.sunset_bookstore_unlock_commission_1>>
+<br><br>
+<<= $ARedSecret.loc[`sunset_bookstore_unlock_commission_2_${$speech_attitude}`]>>
+<br>
+$ARedSecret.loc.sunset_bookstore_unlock_commission_3
+<br><br>
+
+<<set _decline to $ARedSecret.loc[`sunset_bookstore_unlock_commission_decline_${$speech_attitude}`]>>
+<<link "$ARedSecret.loc.sunset_bookstore_unlock_commission_accept" "ARedSecret Location SunsetBookstore UnlockCommission Accept">><</link>><br>
+<<link "_decline" "ARedSecret Location SunsetBookstore UnlockCommission Decline">><</link>>
+
+:: ARedSecret Location SunsetBookstore UnlockCommission Accept
+
+<<set $ARedSecret.commissions.catherine.accepted to true>>
+<<= $ARedSecret.loc[`sunset_bookstore_unlock_commission_accept_${$speech_attitude}`]>>
+$ARedSecret.loc.sunset_bookstore_unlock_commission_accept_2
+<br><br>
+$ARedSecret.loc.sunset_bookstore_unlock_commission_accept_hint
+<br><br>
+<<link "$ARedSecret.loc.back" "ARedSecret Location SunsetBookstore">><</link>>
+
+:: ARedSecret Location SunsetBookstore UnlockCommission Decline
+
+<<= $ARedSecret.loc[`sunset_bookstore_unlock_commission_declined_${$speech_attitude}`]>>
+$ARedSecret.loc.sunset_bookstore_unlock_commission_declined_2
+<br><br>
+$ARedSecret.loc.sunset_bookstore_unlock_commission_declined_hint
+<br><br>
+<<link "$ARedSecret.loc.back" "ARedSecret Location SunsetBookstore">><</link>>

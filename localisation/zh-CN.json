@@ -84,7 +84,8 @@
     "sunset_bookstore_found": "你发现了日暮书屋。",
     "sunset_bookstore_enter": "你走进了日暮书屋。",
     "sunset_bookstore_back": "你走了回来。",
-    "sunset_bookstore_catherine_default": "凯瑟琳只是一如往常般地站在柜台后面，低着头，不知在看什么东西。",
+    "sunset_bookstore_catherine_default": "凯瑟琳还是一如往常地站在柜台后面，低着头，不知在看什么东西。",
+    "sunset_bookstore_catherine_neg_trust": "凯瑟琳对你的到来没有任何反应……你不知道她是否//应该//有所反应。",
     "sunset_bookstore_search_books": "寻找书籍",
     "sunset_bookstore_search_no_book": "已经没有什么值得搜寻的了，<span class='gold'>或许可以明天再来。</span>",
     "sunset_bookstore_searching": "你穿行于书架之间，想在这些书籍之中找到一些你感兴趣的，或者可能用得上的书籍。虽然绝大多数书籍对你而言要么味同嚼蜡，要么宛如天书，但在花了一些时间过后，你还是找到了几本可堪一读的书。",
@@ -106,7 +107,31 @@
     "sunset_bookstore_buy_already_have": "你目前已经拥有这本书。",
     "sunset_bookstore_buy_finished": "这本书你已读完。",
     "sunset_bookstore_buy_confirm": "还是要购买吗？",
-    "sunset_bookstore_bought": "你买下了这本<<= $ARedSecret.loc.books[_book.id].title>>，可以回到家后阅读。",
+    "sunset_bookstore_bought_1": "你买下了这本<<= $ARedSecret.loc.books[_book.id].title>>。",
+    "sunset_bookstore_bought_2": "凯瑟琳帮你打包好书本，随后将它递给了你。",
+    "sunset_bookstore_bought_3_1": "凯瑟琳仔细地为你打包好书本",
+    "sunset_bookstore_bought_3_2": "并简短嘱咐了一些保养书籍的注意事项",
+    "sunset_bookstore_bought_3_3": "，随后将它递给了你。",
+    "sunset_bookstore_bought_tip": "回到孤儿院后你可以在卧室的书架里找到这本书并开始阅读。",
+    "sunset_bookstore_unlock_commission_1": "与以往不同，当你走过柜台时，一个你许久未听闻却无比熟悉的声音叫住了你：那位一直站在柜台后面一言不发的凯瑟琳。你差点没有认出来她的声音。<br><br>“敝店近日承蒙照顾，”她说，“想必你也学到很多。我有一个提议，或说一事相求……”",
+    "sunset_bookstore_unlock_commission_2_meek": "“您请说，”你这么说着，心里暗暗思考会是怎样的要求。",
+    "sunset_bookstore_unlock_commission_2_neutral": "“是什么提议呢？”你问道。",
+    "sunset_bookstore_unlock_commission_2_bratty": "“有什么事还需要来求我？”你满怀困惑地问道。",
+    "sunset_bookstore_unlock_commission_3": "“我有一些学界的熟人和朋友，他们也在研究无形之术。具体来说，是<span class='ars-lantern'>有关照明的知识</span>和<span class='ars-winter'>有关静默的知识</span>。有的人还在研究<span class='ars-sec-his'>其他重历史</span>。”她解释道，声音轻柔，“你和他们的目的不一样，方法也不一样，但你很有潜力。你独特的视角能给他们的研究带来很大启发。”<br><br>她顿了顿，继续说道，“我希望你能为他们<span class='gold'>供稿</span>，可能是短文，也可能是论文。我不会给你安排超出你能力范围太多的任务。他们会为你的协助提供一笔可观的报酬，而且如果效率够高，还会提供额外的<span class='ars-copper'>古币</span>。当然，如果没能在规定期限内交稿，报酬也会打折扣。意下如何？”",
+    "sunset_bookstore_unlock_commission_accept": "接受",
+    "sunset_bookstore_unlock_commission_decline_meek": "婉言谢绝",
+    "sunset_bookstore_unlock_commission_decline_neutral": "再想想",
+    "sunset_bookstore_unlock_commission_decline_bratty": "拒绝",
+    "sunset_bookstore_unlock_commission_accept_meek": "“荣幸之至，”你立时同意。<br>“很好，”虽然她的表情并没有太大变化，但你感觉到她似乎很满意。",
+    "sunset_bookstore_unlock_commission_accept_neutral": "“听上去很不错，”你说道。<br>“我想也是，”她的语气平和，",
+    "sunset_bookstore_unlock_commission_accept_bratty": "“念在你的份上，我可以帮点忙，”你说道。<br>“这样也好，”她并没有太在意你的态度，",
+    "sunset_bookstore_unlock_commission_accept_2": "“我会联系他们的。<span class='gold'>过几天</span>再来找我，届时我会向你介绍细节。多谢你的合作。”说完她又把头低了下来，专注于柜台上翻开来的书本。按她寡言的性格来看，她刚才已经跟你说的够多，现在已经没什么要说的了。",
+    "sunset_bookstore_unlock_commission_accept_hint": "//<span class='gold'>你解锁了凯瑟琳的委托任务</span>，她需要的知识主要为<span class='ars-lantern'>灯</span>、<span class='ars-winter'>冬</span>，以及<span class='ars-sec-his'>秘史</span>。你可以在日暮书屋与她聊天来接取委托。一般的委托需要你有<strong>对应准则</strong>的足够知识和一本书籍，满足条件后便可以在卧室书桌开始作业。委托一般分为数个阶段，需要多次作业完成。一旦完成，便可同凯瑟琳对话来提交任务。在任务期限内提交不仅会获得更多的金钱报酬，还会获得<span class='ars-copper'>古币</span>，而超时提交则无法获得<span class='ars-copper'>古币</span>，报酬也会变少。随着你知识的精进和凯瑟琳对你信任的加深，将会解锁更高等级的委托，以及特殊任务。//",
+    "sunset_bookstore_unlock_commission_declined_meek": "“非常感谢您的认可，但我想我目前还达不到这种水平，”你的声音微微颤抖。<br>“我看到了你的潜力，你也应当如此，”她的语气里竟有一丝鼓励，“但我不会强求你。",
+    "sunset_bookstore_unlock_commission_declined_neutral": "“听起来有些费时间，我需要再考虑一下，”你说道。<br>“他们不会给一个高中生安排太繁重的任务，”她的语气平和，“我也不会。不过你可以慢慢考虑。",
+    "sunset_bookstore_unlock_commission_declined_bratty": "“我没兴趣帮别人干活。”你很干脆地拒绝了她。<br>“就算结局已定，人也需要互相搀扶，”你听不太出来她怎么看待你的态度，“也许你需要花点时间来理解。无论如何，",
+    "sunset_bookstore_unlock_commission_declined_2": "只要你回心转意，随时可以回来找我。”说完她又把头低了下来，专注于柜台上翻开来的书本。你不知道她对你的拒绝是否感到失望，但按她寡言的性格来看，现在已经没什么再需要跟你说的了。",
+    "sunset_bookstore_unlock_commission_declined_hint": "//你可以随时跟凯瑟琳谈话来重新接受她的委托邀请，前提是你没有因为一些其他原因惹恼她……//",
 
     "books": {
         "orchidtransfigurations1": {
@@ -523,6 +548,20 @@
         }
     },
 
+    "npcs": {
+        "catherine": {
+            "title": "书屋老板",
+            "name": "凯瑟琳",
+            "surname": "克拉克",
+            "fullname": "凯瑟琳·克拉克",
+            "trust_neg": "$ARedSecret.loc.npcs.catherine.name对你<span class='red'>无话可说</span>。",
+            "trust_1": "$ARedSecret.loc.npcs.catherine.name在你面前偶有开口。",
+            "trust_2": "$ARedSecret.loc.npcs.catherine.name开始为你<span class='blue'>介绍委托</span>。",
+            "trust_3": "$ARedSecret.loc.npcs.catherine.name开始和你<span class='teal'>谈论其他事情</span>。",
+            "trust_4": "$ARedSecret.loc.npcs.catherine.name愿意为你<span class='green'>不吝言语</span>。"
+        }
+    },
+
     "yes": "是",
     "no": "否",
     "you": "你",
@@ -564,8 +603,8 @@
     "gain_language_knowledge_5": "你所学到的远超你的想象，仿佛在那一瞬间<<= $ARedSecret.loc[_type]>>成为了你思维的本质。",
     "gain_ia_secrethistories_capped_1": "尽管有所收获，但你有限的历史知识无法支撑起你对<<= $ARedSecret.loc[_type]>>之知识的进一步探求。",
     "gain_ia_secrethistories_capped_2": "盘根错节的历史之网困住了你，让你迷失在永恒与虚无间的夹缝中。//你已无法理解更多有关<<= $ARedSecret.loc[_type]>>之教诲。//",
-    "gain_ia_secrethistories_capped_tip": "（<span class='gold'>你<<= $ARedSecret.loc[_type]>>技能的最高等级受到<<icon 'history.png'>>历史成绩等级的制约</span>，努力提升学校成绩吧。）",
+    "gain_ia_secrethistories_capped_tip": "（<span class='gold'>你<<= $ARedSecret.loc[_type]>>技能的最高等级受到<<icon 'history.png'>>历史成绩等级的制约</span>，努力提升学习成绩吧。）",
     "gain_language_capped_1": "尽管有所收获，学习的过程却愈发艰难。你感觉你对<<= $ARedSecret.loc[_type]>>的理解已经触及瓶颈。",
     "gain_language_capped_2": "熟悉的句子在你眼前破碎，陌生的词汇在你脑中轰鸣。//你已无法理解更多有关<<= $ARedSecret.loc[_type]>>的知识。//",
-    "gain_language_capped_tip": "（<span class='gold'>你语言类技能的最高等级受到<<icon 'english.png'>>语文成绩等级的制约</span>，努力提升学校成绩吧。）"
+    "gain_language_capped_tip": "（<span class='gold'>你语言类技能的最高等级受到<<icon 'english.png'>>语文成绩等级的制约</span>，努力提升学习成绩吧。）"
 }

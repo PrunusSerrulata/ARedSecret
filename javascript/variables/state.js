@@ -1,5 +1,12 @@
 "use strict";
 
+Object.keys(V.ARedSecret.books).forEach (k => {
+    Object.assign(V.ARedSecret.books[k], {
+        finished: false,
+        currentPart: 0,
+    })
+});
+
 Object.assign(V.ARedSecret, {
     latin: 0,
     greek: 0,
@@ -26,13 +33,6 @@ V.ARedSecret.daily = {
     bookstoreBooks: [],
 };
 
-Object.keys(V.ARedSecret.books).forEach (k => {
-    Object.assign(V.ARedSecret.books[k], {
-        finished: false,
-        currentPart: 0,
-    })
-});
-
 V.ARedSecret.bookshelf = {
     type: "basic",
     capacity: 10,
@@ -40,8 +40,15 @@ V.ARedSecret.bookshelf = {
         { id: "test9", },
         { id: "test_latin"},
     ],
-    getOccupancy() { return this.books.length / this.capacity; },
+    getOccupancy: function () { return this.books.length / this.capacity; },
 };
+
+V.ARedSecret.commissions = {
+    catherine: {
+        unlocked: false,
+        accepted: false,
+    }
+}
 
 V.ARedSecret.schoolLibInitBook = window.ARedSecret.utils.draw(schoolLibInitBooks)[0];
 

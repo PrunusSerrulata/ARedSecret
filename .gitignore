@@ -1,4 +1,6 @@
+.vscode/
 dol-with-ml/
+typescript/
 packager/__pycache__/
 
 wiki/.*
@@ -6,7 +8,9 @@ wiki/*.drawio
 
 .boot.json
 .run.bat
+.build-and-run.bat
 ARedSecret.mod.zip
 assetsList.json
 boot.json
 packager/test.py
+t3lt.twee-config.yml

@@ -8,7 +8,7 @@
     <<set _iconO to "assets/icons/books/"+_id+".png">>
     <<set _iconT to "assets/icons/books/"+_id+"_"+_language+".png">>
     
-    <<if ARedSecret.utils.isFileExists(_iconO)>>
+    <<if ARedSecret.utils.fileExists(_iconO)>>
         <<if !_language or _translated>>
             <<set _icon to _iconO>>
         <<else>>
