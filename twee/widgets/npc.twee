@@ -5,11 +5,11 @@
 
     <<if _trust lt -5>>
         $ARedSecret.loc.npcs.catherine.trust_neg
-    <<elseif _trust gt -5 and _trust lte 10>>
+    <<elseif _trust lte 10>>
         $ARedSecret.loc.npcs.catherine.trust_1
-    <<elseif _trust gt 10 and _trust lte 25>>
+    <<elseif _trust lte 25>>
         $ARedSecret.loc.npcs.catherine.trust_2
-    <<elseif _trust gt 25 and _trust lt 50>>
+    <<elseif _trust lt 50>>
         $ARedSecret.loc.npcs.catherine.trust_3
     <<else>>
         $ARedSecret.loc.npcs.catherine.trust_4

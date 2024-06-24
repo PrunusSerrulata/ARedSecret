@@ -47,6 +47,32 @@ V.ARedSecret.commissions = {
     catherine: {
         unlocked: false,
         accepted: false,
+        types: [
+            {
+                type: "article",
+                principle: "lantern",
+                levels: [3, 5, 7, 9],
+                cooldown: 0,
+            },
+            {
+                type: "article",
+                principle: "winter",
+                levels: [3, 5, 7, 9],
+                cooldown: 0,
+            },
+            {
+                type: "article",
+                principle: "secrethistories",
+                levels: [3, 5, 7, 9],
+                cooldown: 0,
+            },
+        ],
+        current: {
+            type: "article",
+            principle: "lantern",
+            level: 3,
+        },
+        cooldown: 0,
     }
 }
 

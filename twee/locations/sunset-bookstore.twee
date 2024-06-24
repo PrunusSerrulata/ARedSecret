@@ -47,8 +47,6 @@ $ARedSecret.loc.sunset_bookstore_first_visit_1
 <br>
 <<link [[$ARedSecret.loc.leave (0:01)|Residential alleyways]]>><<pass 1>><</link>>
 
-
-
 :: ARedSecret Location SunsetBookstore FirstVisit 2
 
 <<set $outside to 0>>
@@ -56,8 +54,6 @@ $ARedSecret.loc.sunset_bookstore_first_visit_2
 <br><br>
 
 <<link [[$ARedSecret.loc.observe (0:01)|ARedSecret Location SunsetBookstore FirstVisit 3]]>><<pass 1>><</link>>
-
-
 
 :: ARedSecret Location SunsetBookstore FirstVisit 3
 
@@ -78,8 +74,8 @@ $ARedSecret.loc.sunset_bookstore_first_visit_3
 <<set $outside to 0>>
 
 <<set _catherineTrust to $NPCName.find(e => e.nam === "Catherine").trust>>
-<<if $ARedSecret.temp.backFromCommission>>
-    <<unset $ARedSecret.temp.backFromCommission>>
+<<if $ARedSecret.temp.backFromCounter>>
+    <<unset $ARedSecret.temp.backFromCounter>>
 <<elseif $ARedSecret.temp.backFromSearching>>
     <<unset $ARedSecret.temp.backFromSearching>>
     $ARedSecret.loc.sunset_bookstore_back
@@ -104,6 +100,8 @@ $ARedSecret.loc.sunset_bookstore_first_visit_3
 <<else>>
     $ARedSecret.loc.sunset_bookstore_search_no_book
 <</if>>
+<br>
+<<link [[$ARedSecret.loc.sunset_bookstore_approach (0:01)|ARedSecret Location SunsetBookstore Counter]]>><<pass 1>><</link>>
 <br><br>
 <<link [[$ARedSecret.loc.leave (0:01)|Residential alleyways]]>><<pass 1>><</link>>
 
@@ -276,13 +274,53 @@ $ARedSecret.loc.book_select
 <</if>>
 <<link [[$ARedSecret.loc.continue|ARedSecret Location SunsetBookstore Searching]]>><</link>>
 
+:: ARedSecret Location SunsetBookstore Counter
+
+<<set $ARedSecret.temp.backFromCounter to true>>
+
+$ARedSecret.loc.sunset_bookstore_counter
+<<set _trust to $NPCName.find(e => e.nam === "Catherine").trust>>
+<<if _trust lt -5>>
+    $ARedSecret.loc.sunset_bookstore_counter_neg_trust
+    <br><br>
+    $ARedSecret.loc.sunset_bookstore_counter_neg_trust_tip
+    <br>
+    <<link "$ARedSecret.loc.back" "ARedSecret Location SunsetBookstore">><</link>>
+<<elseif _trust lte 10>>
+    $ARedSecret.loc.sunset_bookstore_counter_1
+    <br><br>
+    $ARedSecret.loc.sunset_bookstore_counter_1_tip
+    <br>
+    <<link "$ARedSecret.loc.back" "ARedSecret Location SunsetBookstore">><</link>>
+<<else>>
+    <<if _trust lte 25>>
+        $ARedSecret.loc.sunset_bookstore_counter_2
+    <<elseif _trust lte 50>>
+        $ARedSecret.loc.sunset_bookstore_counter_3
+    <<else>>
+        $ARedSecret.loc.sunset_bookstore_counter_4
+    <</if>>
+    <br><br>
+
+    <<if $ARedSecret.commissions.catherine.unlocked>>
+        <<if $ARedSecret.commissions.catherine.accepted>>
+            <<link "$ARedSecret.loc.sunset_bookstore_commission_enquiry" "ARedSecret Location SunsetBookstore Conversation Commission">><</link>>
+        <</if>>
+    <</if>>
+
+    <br>
+    <<link "$ARedSecret.loc.back" "ARedSecret Location SunsetBookstore">><</link>>
+<</if>>
+
+:: ARedSecret Location SunsetBookstore Conversation Commission
+
 
 
 :: ARedSecret Location SunsetBookstore UnlockCommission
 
 <<set $ARedSecret.commissions.catherine.unlocked to true>>
 <<unset $ARedSecret.temp.catherineCommissionReady>>
-<<set $ARedSecret.temp.backFromCommission to true>>
+<<set $ARedSecret.temp.backFromCounter to true>>
 
 <<= $ARedSecret.loc.sunset_bookstore_enter>>
 <<= $ARedSecret.loc.sunset_bookstore_unlock_commission_1>>

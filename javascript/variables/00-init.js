@@ -32,6 +32,14 @@ V.ARedSecret.bookstoreInventory = [
     { id: "twentysixenticementsseventorments", translated: true },
 ];
 
+V.ARedSecret.npcConversationTopics = {
+    catherine: [
+        [ "$ARedSecret.loc.sunset_bookstore_conversation_topic_1" ],
+        [ "$ARedSecret.loc.sunset_bookstore_conversation_topic_2" ],
+        [ "$ARedSecret.loc.sunset_bookstore_conversation_topic_3" ],
+    ],
+}
+
 V.ARedSecret.bookshelves = {
     basic: {
         type: "basic",

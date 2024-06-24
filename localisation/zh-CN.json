@@ -132,6 +132,21 @@
     "sunset_bookstore_unlock_commission_declined_bratty": "“我没兴趣帮别人干活。”你很干脆地拒绝了她。<br>“就算结局已定，人也需要互相搀扶，”你听不太出来她怎么看待你的态度，“也许你需要花点时间来理解。无论如何，",
     "sunset_bookstore_unlock_commission_declined_2": "只要你回心转意，随时可以回来找我。”说完她又把头低了下来，专注于柜台上翻开来的书本。你不知道她对你的拒绝是否感到失望，但按她寡言的性格来看，现在已经没什么再需要跟你说的了。",
     "sunset_bookstore_unlock_commission_declined_hint": "//你可以随时跟凯瑟琳谈话来重新接受她的委托邀请，前提是你没有因为一些其他原因惹恼她……//",
+    "sunset_bookstore_approach": "接近柜台",
+    "sunset_bookstore_counter": "你走近柜台。",
+    "sunset_bookstore_counter_neg_trust": "凯瑟琳不为所动，仿佛你从未存在于这里，但你切实地感受到她身上正散发出一股严寒的气场，禁锢住你的身体，扼住你的咽喉，令你不寒而栗。你没敢再往前一步，遑论开口。",
+    "sunset_bookstore_counter_neg_trust_tip": "//凯瑟琳目前不信任你……做点什么来修复与她的关系。//",
+    "sunset_bookstore_counter_1": "凯瑟琳还在看书。",
+    "sunset_bookstore_counter_1_tip": "//你现在没有什么可以与她讨论的事情。试着增进她对你的信任之后再来。//",
+    "sunset_bookstore_counter_2": "凯瑟琳翻书的动作稍微变慢了些，你认为她发现你靠近了。",
+    "sunset_bookstore_counter_3": "凯瑟琳抬起头来看了你一眼。",
+    "sunset_bookstore_counter_4": "听到你不断靠近的脚步声，凯瑟琳抬起了头。“有什么事吗？”",
+    "sunset_bookstore_commission_enquiry": "询问委托",
+    "sunset_bookstore_commission_submit": "提交委托",
+    "sunset_bookstore_conversation_topic_1": "询问这家店的名称由来",
+    "sunset_bookstore_conversation_topic_2": "询问她为什么要开这家书店",
+    "sunset_bookstore_conversation_topic_3": "询问对居民异常欲望的看法",
+
 
     "books": {
         "orchidtransfigurations1": {
