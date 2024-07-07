@@ -314,7 +314,9 @@ $ARedSecret.loc.sunset_bookstore_counter
 
 :: ARedSecret Location SunsetBookstore Conversation Commission
 
-
+<<if not $ARedSecret.commissions.catherine.accepted>>
+    
+<</if>>
 
 :: ARedSecret Location SunsetBookstore UnlockCommission
 

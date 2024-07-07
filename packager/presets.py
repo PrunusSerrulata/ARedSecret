@@ -5,6 +5,7 @@ ignore = re.compile(
      r"packager/|"
      r"wiki/|"
      r"t3lt\.twee-config\.yml$|"
+     r"inject-early|"
      r"\.zip$|"
      r"\.bat$|"
      r"\.sh$|"
