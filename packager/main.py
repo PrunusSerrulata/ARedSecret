@@ -38,7 +38,7 @@ def get_boot_config():
         "scriptFileList_earlyload": presets.scriptFileList_earlyload,
         "scriptFileList_preload": presets.scriptFileList_preload,
         "styleFileList": get_file_list("./", r"\.css$"),
-        "scriptFileList": get_file_list("./", r"\.js$"),
+        "scriptFileList": [f for f in get_file_list("./", r"\.js$") if not re.search(r"inject-early", f)],
         "tweeFileList": get_file_list("./", r"\.twee$"),
         "imgFileList": [],
         "additionFile": get_file_list("./localisation") + presets.additionFile,
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         pack()
         shutil.copyfile(f"{presets.name}.mod.zip", f"./dol-with-ml/mods/{presets.name}.mod.zip")
         with open("./dol-with-ml/modList.json", "w") as f:
-            json.dump(["mods/ModI18N.mod.zip", "mods/Simple Frameworks.zip", f"mods/{presets.name}.mod.zip"][0 if os.path.exists("./dol-with-ml/mods/ModI18N.mod.zip") else 1:], f)
+            json.dump(["mods/ModI18N.mod.zip", "mods/Simple.Frameworks.zip", f"mods/{presets.name}.mod.zip"][0 if os.path.exists("./dol-with-ml/mods/ModI18N.mod.zip") else 1:], f)
         print()
 
     if "--run-server" in sys.argv and os.path.exists("./dol-with-ml/"):
