@@ -28,7 +28,7 @@
 
 2. *（可选）* 
    - 将带有ModLoader的[预构建版DoL](https://github.com/Lyoko-Jeremie/DoLModLoaderBuild/releases)解压至本仓库根目录下`dol-with-ml`目录内；
-   - 下载[简易框架](https://github.com/emicoto/DOLMods/releases/latest)，将其重命名为`Simple Frameworks.zip`并置于`dol-with-ml/mods`目录内；
+   - 下载[简易框架](https://github.com/emicoto/DOLMods/releases/latest)，将其重命名为`Simple.Frameworks.zip`并置于`dol-with-ml/mods`目录内；
    - 下载[DoL汉化包](https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization/releases/latest)，将其重命名为`ModI18N.mod.zip`并置于`dol-with-ml/mods`目录内；
 
 3. 在仓库根目录下运行`packager/main.py`；
